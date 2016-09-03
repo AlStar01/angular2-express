@@ -11,4 +11,10 @@ router.get('/', (req, res) => {
         .catch((err) => res.status(500).send(err));
 });
 
+router.get('/:id', (req, res) => {
+    productService.getProduct(req.params.id)
+        .then(products => res.send(products))
+        .catch((err) => res.status(500).send(err));
+});
+
 module.exports = router;
