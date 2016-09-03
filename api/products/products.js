@@ -1,17 +1,14 @@
 var express = require('express');
 var router = express.Router();
 
+let productService = require('./product-service');
+
 let db = require('../../config/db');
 
 router.get('/', (req, res) => {
-    db.getConnection((err, connection) => {
-        connection.query('SELECT * FROM product', (err, rows) => {
-            if(err) res.status(500).send('Error retrieving products');
-
-            connection.release();
-            res.send(rows);
-        });
-    });
+    productService.getProducts()
+        .then(products => res.send(products))
+        .catch((err) => res.status(500).send(err));
 });
 
 module.exports = router;
