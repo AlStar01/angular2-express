@@ -3,15 +3,18 @@ let router = express.Router();
 
 let db = require('../../config/db');
 
-router.get('/', (req, res) => {
-    db.getConnection((err, connection) => {
-        connection.query('SELECT * FROM category', (err, rows) => {
-            if(err) res.status(500).send("Error retrieving categories");
+let categoryService = require('./category-service');
 
-            connection.release();
-            res.send(rows);
-        });
-    });
+router.get('/', (req, res) => {
+    categoryService.getCategories()
+        .then(categories => res.send(categories))
+        .catch(err => res.status(500).send("Error retrieving categories"));
+});
+
+router.get('/:id', (req, res) => {
+    categoryService.getCategory(req.params.id)
+        .then(categories => res.send(categories))
+        .catch(err => res.status(500).send(err));
 });
 
 module.exports = router;
