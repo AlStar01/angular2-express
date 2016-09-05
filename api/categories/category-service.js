@@ -22,6 +22,8 @@ function getCategories() {
 function getCategory(id) {
     return new Promise((resolve, reject) => {
         db.getConnection((err, connection) => {
+            if(err) reject(err);
+
             connection.query('SELECT * FROM category where category_id = ?', [id], (err, rows) => {
                 if(err) reject(err);
 
@@ -35,6 +37,8 @@ function getCategory(id) {
 function addCategory(category) {
     return new Promise((resolve, reject) => {
         db.getConnection((err, connection) => {
+            if(err) reject(err);
+
             connection.query('INSERT INTO category SET ?', category, (err, result) => {
                 if(err) reject(err);
 

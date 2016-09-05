@@ -11,6 +11,8 @@ let service = {
 function getProducts() {
     return new Promise((resolve, reject) => {
         db.getConnection((err, connection) => {
+            if(err) reject(err);
+
             connection.query('SELECT * FROM product', (err, rows) => {
                 if(err) reject(err);
 
@@ -24,6 +26,8 @@ function getProducts() {
 function getProduct(id) {
     return new Promise((resolve, reject) => {
         db.getConnection((err, connection) => {
+            if(err) reject(err);
+
             connection.query('SELECT * FROM product where product_id = ?', [id], (err, rows) => {
                 if(err) reject(err);
 
@@ -37,6 +41,8 @@ function getProduct(id) {
 function getProductByCategory(categoryId) {
     return new Promise((resolve, reject) => {
         db.getConnection((err, connection) => {
+            if(err) reject(err);
+
             connection.query('SELECT * FROM product WHERE category_id = ?', [categoryId], (err, rows) => {
                 if(err) reject(err);
 
@@ -63,6 +69,8 @@ function addProduct(product, quantity = 1) {
     
     return new Promise((resolve, reject) => {
         db.getConnection((err, connection) => {
+            if(err) reject(err);
+
             connection.query(sql, (err, result) => {
                 if(err) reject(err);
 

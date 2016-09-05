@@ -5,7 +5,8 @@ let db = require('../../config/db');
 let service = {
     getProductsByCategory,
     getProductsByModel,
-    getProductsByPrice
+    getProductsByPrice,
+    getProductsRecentActivity
 };
 
 /**
@@ -32,6 +33,8 @@ function getProductsByCategory() {
 
     return new Promise((resolve, reject) => {
         db.getConnection((err, connection) => {
+            if(err) reject(err);
+
             connection.query(sql, (err, rows) => {
                 if (err) reject(err);
 
@@ -53,5 +56,24 @@ function getProductsByModel() { }
  * @returns {Promise}
  */
 function getProductsByPrice() { }
+
+/**
+ * Recent product table activity in descending order limited to 10
+ * @returns {Promise}
+ */
+function getProductsRecentActivity() {
+    return new Promise((resolve, reject) => {
+        db.getConnection((err, connection) => {
+            if(err) reject(err);
+
+            connection.query('SELECT * FROM product ORDER BY ?? DESC LIMIT 10', ['product.modified_on'], (err, rows) => {
+                if (err) reject(err);
+
+                connection.release();
+                resolve(rows);
+            });
+        });
+    });
+}
 
 module.exports = service;
