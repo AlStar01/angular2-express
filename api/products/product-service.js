@@ -48,17 +48,7 @@ function getProductByCategory(categoryId) {
 }
 
 function addProduct(product, quantity = 1) {
-    let data = [];
-    
-    for(let i = 0; i < quantity; i++) {
-        let values = [];
-        
-        for(let property in product) {
-            values.push(product[property]);
-        }
-
-        data.push(values)
-    }
+    const data = _getData(product, quantity);
     
     const raw = "INSERT INTO product (??, ??, ??, ??, ??) VALUES ?"
     const inserts = [
@@ -81,6 +71,22 @@ function addProduct(product, quantity = 1) {
             });
         });
     });
+}
+
+function _getData(product, quantity) {
+    let data = [];
+
+    for(let i = 0; i < quantity; i++) {
+        let values = [];
+        
+        for(let property in product) {
+            values.push(product[property]);
+        }
+
+        data.push(values)
+    }
+
+    return data;
 }
 
 module.exports = service;
