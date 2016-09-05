@@ -1,9 +1,11 @@
+let mysql = require('mysql');
 let db = require('../../config/db');
 
 let service = {
     getProducts,
     getProduct,
-    getProductByCategory
+    getProductByCategory,
+    addProduct
 };
 
 function getProducts() {
@@ -40,6 +42,42 @@ function getProductByCategory(categoryId) {
 
                 connection.release();
                 resolve(rows);
+            });
+        });
+    });
+}
+
+function addProduct(product, quantity = 1) {
+    let data = [];
+    
+    for(let i = 0; i < quantity; i++) {
+        let values = [];
+        
+        for(let property in product) {
+            values.push(product[property]);
+        }
+
+        data.push(values)
+    }
+    
+    const raw = "INSERT INTO product (??, ??, ??, ??, ??) VALUES ?"
+    const inserts = [
+        'name', 
+        'description',
+        'model',
+        'price',
+        'category_id',
+        data
+    ];
+    const sql = mysql.format(sql, inserts);
+    
+    return new Promise((resolve, reject) => {
+        db.getConnection((err, connection) => {
+            connection.query(sql, (err, result) => {
+                if(err) reject(err);
+
+                connection.release();
+                resolve(result);
             });
         });
     });
