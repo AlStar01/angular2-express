@@ -59,7 +59,7 @@ function addProduct(product, quantity = 1) {
         'category_id',
         data
     ];
-    const sql = mysql.format(sql, inserts);
+    const sql = mysql.format(raw, inserts);
     
     return new Promise((resolve, reject) => {
         db.getConnection((err, connection) => {
@@ -73,6 +73,12 @@ function addProduct(product, quantity = 1) {
     });
 }
 
+/**
+ * Prepare product object data for insertion as nested array of values
+ * @param {product} product - product object
+ * @param {number} quantity - number of product instances to insert
+ * @returns {Array<Array<any>>} - two-dimensional array containing arrays of product object values [[1, 2, 3], [1, 2, 3]]
+ */
 function _getData(product, quantity) {
     let data = [];
 

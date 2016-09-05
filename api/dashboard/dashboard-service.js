@@ -1,3 +1,5 @@
+let mysql = require('mysql');
+
 let db = require('../../config/db');
 
 let service = {
@@ -11,8 +13,32 @@ let service = {
  * @returns {Promise}
  */
 function getProductsByCategory() {
-    return new Promise((resolve, reject) => {
+    const raw = `SELECT ??, ??, COUNT(??) as total
+        FROM product p 
+        JOIN category c on ?? = ?? 
+        GROUP BY ?? 
+        ORDER BY total DESC`;
 
+    const inserts = [
+        'p.category_id',
+        'c.name',
+        'p.product_id',
+        'c.category_id',
+        'p.category_id',
+        'c.name'
+    ];
+
+    const sql = mysql.format(raw, inserts);
+
+    return new Promise((resolve, reject) => {
+        db.getConnection((err, connection) => {
+            connection.query(sql, (err, rows) => {
+                if (err) reject(err);
+
+                connection.release();
+                resolve(rows);
+            });
+        });
     });
 }
 
@@ -26,6 +52,6 @@ function getProductsByModel() { }
  * Product counts by price
  * @returns {Promise}
  */
-function getProductsByPrice () { }
+function getProductsByPrice() { }
 
 module.exports = service;
