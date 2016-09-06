@@ -19,7 +19,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
     categoryService.addCategory(req.body)
-        .then(() => res.sendStatus(200))
+        .then(id => res.send({id}))
         .catch(err => res.status(500).send(err));
 });
 

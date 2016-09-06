@@ -9,4 +9,10 @@ router.get('/', (req, res) => {
         .catch(err => res.status(500).send(err));
 });
 
+router.post('/', (req, res) => {
+    tagService.addTag(req.body)
+        .then(id => res.send({id}))
+        .catch(err => res.status(500).send(err));
+});
+
 module.exports = router;
