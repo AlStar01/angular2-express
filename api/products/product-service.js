@@ -5,6 +5,7 @@ let service = {
     getProducts,
     getProduct,
     getProductByCategory,
+    getProductsByTag,
     addProduct
 };
 
@@ -44,6 +45,40 @@ function getProductByCategory(categoryId) {
             if(err) return reject(err);
 
             connection.query('SELECT * FROM product WHERE category_id = ?', [categoryId], (err, rows) => {
+                if(err) return reject(err);
+
+                connection.release();
+                return resolve(rows);
+            });
+        });
+    });
+}
+
+function getProductsByTag(tagId) {
+    const raw = 'SELECT ??, ??, ??, ??, ??, ?? FROM product p JOIN product_tag pt ON ?? = ?? JOIN tag t ON ?? = ?? WHERE ?? = ?';
+
+    const inserts = [
+        'p.product_id',
+        'p.name',
+        'p.description',
+        'p.model',
+        'p.price',
+        'p.category_id',
+        'p.product_id',
+        'pt.product_id',
+        't.tag_id',
+        'pt.tag_id',
+        't.tag_id',
+        tagId
+    ];
+
+    const sql = mysql.format(raw, inserts);
+    
+    return new Promise((resolve, reject) => {
+        db.getConnection((err, connection) => {
+            if(err) return reject(err);
+
+            connection.query(sql, (err, rows) => {
                 if(err) return reject(err);
 
                 connection.release();
