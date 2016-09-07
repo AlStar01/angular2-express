@@ -5,6 +5,7 @@ let service = {
     getTags,
     getTag,
     addTag,
+    addTagsToProduct,
     getTagsByProduct
 };
 
@@ -71,6 +72,38 @@ function addTag(tag) {
     });
 }
 
+/**
+ * Add one or more tags to a product
+ * @param {number} productId - Id of product
+ * @param {Array<tag>} tags - tags to inserted
+ */
+function addTagsToProduct(productId, tags) {
+    const data = _getData(productId, tags);
+    
+    const raw = "INSERT INTO product_tag (??, ??) VALUES ?";
+
+    const inserts = [
+        'product_id',
+        'tag_id',
+        data
+    ];
+
+    const sql = mysql.format(raw, inserts);
+
+    return new Promise((resolve, reject) => {
+        db.getConnection((err, connection) => {
+            if(err) return reject(err);
+
+            connection.query(sql, (err, result) => {
+                if(err) return reject(err);
+
+                connection.release();
+                return resolve(result);
+            });
+        })
+    });
+}
+
 function getTagsByProduct(id) {
     const raw = "SELECT ??, ?? FROM tag t JOIN product_tag pt ON ?? = ?? JOIN product p ON ?? = ?? WHERE ?? = ?"
 
@@ -99,6 +132,18 @@ function getTagsByProduct(id) {
             });
         })
     });
+}
+
+/////////////////////////////////////
+
+/**
+ * Create nested array of data to inserted
+ * @param {number} productId - Id of product
+ * @param {Array<tag>} tags
+ * @returns {Array<Array<any>>} - two-dimensional array containing arrays of product id and tag id [[1, 2], [1, 3]]
+ */
+function _getData(productId, tags) {
+    return tags.map(tag => [productId, tag.id]);
 }
 
 /////////////////////////////////////
