@@ -146,6 +146,26 @@ function _getData(productId, tags) {
     return tags.map(tag => [productId, tag.id]);
 }
 
+/**
+ * Get id of tag by name
+ * @param {string} name - name of tage
+ * @return {Number} id - id of tag
+ */
+function _getTagId(name) {
+    return new Promise((resolve, reject) => {
+        db.getConnection((err, connection) => {
+            if(err) return reject(err);
+
+            connection.query('SELECT ?? FROM tag where name = ?', ['tag_id', name], (err, rows) => {
+                if(err) return reject(err);
+
+                connection.release();
+                return resolve(rows);
+            });
+        })
+    });
+}
+
 /////////////////////////////////////
 
 module.exports = service;
