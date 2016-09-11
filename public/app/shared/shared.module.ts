@@ -5,6 +5,8 @@ import { FormsModule }              from '@angular/forms';
 import { AutoFocusDirective }       from './auto-focus.directive';
 import { SelectOnFocusDirective }   from './select-on-focus.directive'
 
+import { Ng2BootstrapModule }       from 'ng2-bootstrap/ng2-bootstrap';
+
 @NgModule({
     imports:        [ CommonModule ],
     declarations:   [ AutoFocusDirective, 
@@ -12,6 +14,7 @@ import { SelectOnFocusDirective }   from './select-on-focus.directive'
     exports:        [ AutoFocusDirective, 
                       SelectOnFocusDirective, 
                       CommonModule, 
-                      FormsModule ]
+                      FormsModule,
+                      Ng2BootstrapModule ]
 })
 export class SharedModule { }
