@@ -3,13 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent }  from './app.component';
 
-import { DashboardModule } from './dashboard/dashboard.module';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { routing } from './app.routing';
 
+import { DashboardModule } from './dashboard/dashboard.module';
+import { ProductsModule } from './products/products.module';
+
 @NgModule({
-  imports: [ BrowserModule, DashboardModule, CoreModule, SharedModule, routing ],
+  imports: [  BrowserModule, 
+              CoreModule, 
+              SharedModule,
+              DashboardModule,
+              ProductsModule,
+              routing ],
   declarations: [ AppComponent ],
   bootstrap: [ AppComponent ]
 })

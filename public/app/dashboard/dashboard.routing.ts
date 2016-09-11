@@ -1,8 +1,10 @@
 import { ModuleWithProviders }  from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
 import { DashboardComponent } from './dashboard.component'
 
-export const routing: ModuleWithProviders = RouterModule.forChild([
+const routes: Routes = [
     { path: 'dashboard', component: DashboardComponent }
-]);
+];
+
+export const routing: ModuleWithProviders = RouterModule.forChild(routes);
