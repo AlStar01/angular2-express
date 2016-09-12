@@ -47,8 +47,29 @@
                     <div class="panel-title">Recent Activity</div>
                 </div>
                 <div class="panel-body">
-                        recent activity will go here
+                    <div class="table-responsive" *ngIf="recentActivities">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Model</th>
+                                    <th>Price</th>
+                                    <th>Category</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let product of recentActivities">
+                                    <td>{{ product.name }}</td>
+                                    <td>{{ product.model }}</td>
+                                    <td>{{ product.price | currency:'USD':true }}</td>
+                                    <td>{{ product.category }}</td>
+                                    <td>{{ product.timestamp | date:'short' }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
+                </div>
             </div>
         </div>
     </div>

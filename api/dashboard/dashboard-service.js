@@ -86,11 +86,26 @@ function getProductsByPrice() { }
  * @returns {Promise}
  */
 function getProductsRecentActivity() {
+    const raw = 'SELECT ??, ??, ??, ?? as category, ?? as timestamp FROM product p JOIN category c ON ?? = ?? ORDER BY ?? DESC LIMIT 10';
+
+    const inserts = [
+        'p.name',
+        'p.model',
+        'p.price',
+        'c.name',
+        'p.modified_on',
+        'c.category_id',
+        'p.category_id',
+        'p.modified_on'
+    ];
+
+    const sql = mysql.format(raw, inserts);
+    
     return new Promise((resolve, reject) => {
         db.getConnection((err, connection) => {
             if(err) reject(err);
 
-            connection.query('SELECT * FROM product ORDER BY ?? DESC LIMIT 10', ['product.modified_on'], (err, rows) => {
+            connection.query(sql, (err, rows) => {
                 if (err) reject(err);
 
                 connection.release();

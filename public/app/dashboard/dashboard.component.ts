@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 import { DashboardService } from './dashboard.service';
 
-import { NameAndTotal } from '../shared/models/nameAndTotal';
-
 @Component({
     templateUrl: 'app/dashboard/dashboard.html'
 })
