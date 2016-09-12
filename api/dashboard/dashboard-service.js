@@ -46,10 +46,33 @@ function getProductsByCategory() {
 }
 
 /**
- * Product counts by model number
+ * Product counts by model
  * @returns {Promise}
  */
-function getProductsByModel() { }
+function getProductsByModel() {
+    const raw = 'SELECT ??, COUNT(??) as total FROM product p GROUP BY ?? ORDER BY total DESC LIMIT 5';
+
+    const inserts = [
+        'p.name',
+        'p.product_id',
+        'p.model'
+    ];
+
+    const sql = mysql.format(raw, inserts);
+
+    return new Promise((resolve, reject) => {
+        db.getConnection((err, connection) => {
+            if(err) reject(err);
+
+            connection.query(sql, (err, rows) => {
+                if (err) reject(err);
+
+                connection.release();
+                resolve(rows);
+            });
+        });
+    });
+}
 
 /**
  * Product counts by price

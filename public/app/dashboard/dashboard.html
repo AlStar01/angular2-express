@@ -4,6 +4,7 @@
             <h2>Dashboard</h2>
         </div>
     </div>
+    <br>
     <div class="row">
         <div class="col-sm-6">
             <div class="panel panel-default">
@@ -11,8 +12,13 @@
                     <div class="panel-title">Products</div>
                 </div>
                 <div class="panel-body">
-                        product content will go here
-                    </div>
+                    <ul class="list-group" *ngIf="productsByModel">
+                        <li class="list-group-item" *ngFor="let product of productsByModel">
+                            <span class="badge">{{product.total}}</span>
+                            {{product.name}}
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="col-sm-6">
