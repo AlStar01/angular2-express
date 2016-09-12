@@ -50,9 +50,10 @@ function getProductsByCategory() {
  * @returns {Promise}
  */
 function getProductsByModel() {
-    const raw = 'SELECT ??, COUNT(??) as total FROM product p GROUP BY ?? ORDER BY total DESC LIMIT 5';
+    const raw = 'SELECT ??, ??, COUNT(??) as total FROM product p GROUP BY ?? ORDER BY total DESC LIMIT 5';
 
     const inserts = [
+        'p.model',
         'p.name',
         'p.product_id',
         'p.model'

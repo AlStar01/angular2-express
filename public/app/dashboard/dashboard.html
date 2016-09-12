@@ -13,9 +13,9 @@
                 </div>
                 <div class="panel-body">
                     <ul class="list-group" *ngIf="productsByModel">
-                        <li class="list-group-item" *ngFor="let product of productsByModel">
-                            <span class="badge">{{product.total}}</span>
-                            {{product.name}}
+                        <li class="list-group-item" *ngFor="let group of productsByModel">
+                            <span class="badge">{{group.total}}</span>
+                            {{group.name}}
                         </li>
                     </ul>
                 </div>
@@ -27,8 +27,13 @@
                     <div class="panel-title">Categories</div>
                 </div>
                 <div class="panel-body">
-                        category content will go here
-                    </div>
+                    <ul class="list-group" *ngIf="productsByCategory">
+                        <li class="list-group-item" *ngFor="let group of productsByCategory">
+                            <span class="badge">{{group.total}}</span>
+                            {{group.name}}
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
