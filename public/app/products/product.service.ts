@@ -19,6 +19,12 @@ export class ProductService {
                         .catch(this.handleError);
     }
 
+    getProductsByCategory(categoryId: number): Observable<Product[]> {
+        return this.http.get(`${this.productsUrl}/categories/${categoryId}`)
+                        .map(this.extractData)
+                        .catch(this.handleError)
+    }
+
 
     //////////////////////////////////////////////
 

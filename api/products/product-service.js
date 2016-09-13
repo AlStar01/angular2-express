@@ -4,7 +4,7 @@ let db = require('../../config/db');
 let service = {
     getProducts,
     getProduct,
-    getProductByCategory,
+    getProductsByCategory,
     getProductsByTag,
     addProduct
 };
@@ -39,7 +39,7 @@ function getProduct(id) {
     });
 }
 
-function getProductByCategory(categoryId) {
+function getProductsByCategory(categoryId) {
     return new Promise((resolve, reject) => {
         db.getConnection((err, connection) => {
             if(err) return reject(err);
