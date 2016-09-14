@@ -3,7 +3,8 @@ let db = require('../../config/db');
 let service = {
     getCategories,
     getCategory,
-    addCategory
+    addCategory,
+    getProductsByCategory
 };
 
 function getCategories() {
@@ -44,6 +45,21 @@ function addCategory(category) {
 
                 connection.release();
                 return resolve(result.insertId);
+            });
+        });
+    });
+}
+
+function getProductsByCategory(categoryId) {
+    return new Promise((resolve, reject) => {
+        db.getConnection((err, connection) => {
+            if(err) return reject(err);
+
+            connection.query('SELECT * FROM product WHERE category_id = ?', [categoryId], (err, rows) => {
+                if(err) return reject(err);
+
+                connection.release();
+                return resolve(rows);
             });
         });
     });

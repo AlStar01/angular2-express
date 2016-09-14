@@ -9,6 +9,7 @@ import { routing } from './app.routing';
 
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ProductsModule } from './products/products.module';
+import { CategoriesModule } from './categories/categories.module';
 
 @NgModule({
   imports: [  BrowserModule, 
@@ -16,6 +17,7 @@ import { ProductsModule } from './products/products.module';
               SharedModule,
               DashboardModule,
               ProductsModule,
+              CategoriesModule,
               routing ],
   declarations: [ AppComponent ],
   bootstrap: [ AppComponent ]

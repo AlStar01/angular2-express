@@ -28,10 +28,10 @@
                 </div>
                 <div class="panel-body">
                     <ul class="list-group" *ngIf="productsByCategory">
-                        <li class="list-group-item" *ngFor="let group of productsByCategory">
+                        <a class="list-group-item" *ngFor="let group of productsByCategory" (click)="goToProductsByCategory(group.category_id)">
                             <span class="badge">{{group.total}}</span>
                             {{group.name}}
-                        </li>
+                        </a>
                     </ul>
                 </div>
             </div>

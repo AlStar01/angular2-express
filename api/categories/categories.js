@@ -17,6 +17,12 @@ router.get('/:id', (req, res) => {
         .catch(err => res.status(500).send(err));
 });
 
+router.get('/:id/products', (req, res) => {
+    categoryService.getProductsByCategory(req.params.id)
+        .then(categories => res.send(categories))
+        .catch(err => res.status(500).send(err));
+});
+
 router.post('/', (req, res) => {
     categoryService.addCategory(req.body)
         .then(id => res.send({id}))

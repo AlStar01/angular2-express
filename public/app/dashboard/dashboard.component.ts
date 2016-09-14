@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Router } from '@angular/router';
+
 import { DashboardService } from './dashboard.service';
 
 @Component({
@@ -12,7 +14,9 @@ export class DashboardComponent implements OnInit {
     productsByCategory: any[];
     recentActivities: any[];
 
-    constructor(private dashboardService: DashboardService) { }
+    constructor(
+        private dashboardService: DashboardService,
+        private router: Router) { }
 
     ngOnInit() {
         this.getDashboard();
@@ -28,5 +32,9 @@ export class DashboardComponent implements OnInit {
                 },
                 error => this.errorMessage = <any>error
             );
+    }
+
+    goToProductsByCategory(categoryId: number) {
+        this.router.navigate([`/categories/${categoryId}/products`]);
     }
 }
