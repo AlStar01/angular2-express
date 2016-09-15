@@ -8,7 +8,7 @@ import { CategoryService } from './category.service';
 import { Observable } from 'rxjs/observable';
 
 @Component({
-    templateUrl: 'app/products/categories/category-products.html'
+    templateUrl: 'app/categories/category-products.html'
 })
 export class CategoryProductsComponent implements OnInit {
     errorMessage: string;
