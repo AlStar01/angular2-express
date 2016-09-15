@@ -10,11 +10,26 @@ let service = {
 };
 
 function getProducts() {
+    const raw = 'SELECT ??, ??, ??, ??, ??, ??  as category FROM product p JOIN category c ON ?? = ??';
+
+    const inserts = [
+        'p.product_id',
+        'p.name',
+        'p.description',
+        'p.model',
+        'p.price',
+        'c.name',
+        'c.category_id',
+        'p.category_id'
+    ];
+
+    const sql = mysql.format(raw, inserts);
+    
     return new Promise((resolve, reject) => {
         db.getConnection((err, connection) => {
             if(err) return reject(err);
 
-            connection.query('SELECT * FROM product', (err, rows) => {
+            connection.query(sql, (err, rows) => {
                 if(err) return reject(err);
 
                 connection.release();

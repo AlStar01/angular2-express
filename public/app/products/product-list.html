@@ -4,4 +4,23 @@
             <h2>Products</h2>
         </div>
     </div>
+
+    <br>
+
+    <div class="row" *ngIf="products">
+        <div class="col-sm-3" *ngFor="let product of products">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">{{product.name}}</div>
+                </div>
+                <div class="panel-body">
+                    <span><strong>Category: </strong> {{product.category}}</span>
+                    <br><br>
+                    <span><strong>Model: </strong> {{product.model}}</span>
+                    <br><br>
+                    <span><strong>Price:</strong> {{product.price | currency:'USD':'$'}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
