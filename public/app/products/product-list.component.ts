@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Router } from '@angular/router';
+
 import { Product } from './product';
 import { ProductService } from './product.service';
 
@@ -13,7 +15,9 @@ export class ProductListComponent implements OnInit {
     products: Product[];
     errorMessage: string;
 
-    constructor(private productService: ProductService) {}
+    constructor(
+        private productService: ProductService,
+        private router: Router) {}
 
     ngOnInit() { this.getProducts(); }
 
@@ -23,5 +27,9 @@ export class ProductListComponent implements OnInit {
                                 products => this.products = products,
                                 error => this.errorMessage = <any>error
                             );
+    }
+
+    goToDetail(productId: number) {
+        this.router.navigate(['/products', productId]);
     }
 }

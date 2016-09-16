@@ -46,9 +46,11 @@ function getProduct(id) {
 
             connection.query('SELECT * FROM product where product_id = ?', [id], (err, rows) => {
                 if(err) return reject(err);
+                if(rows.length === 0) return reject("No results")
 
                 connection.release();
-                return resolve(rows);
+
+                return resolve(rows[0]);
             });
         });
     });

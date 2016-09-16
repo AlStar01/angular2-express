@@ -9,7 +9,7 @@
 
     <div class="row" *ngIf="products">
         <div class="col-sm-3" *ngFor="let product of products">
-            <div class="panel panel-default">
+            <div class="panel panel-default" (click)="goToDetail(product.product_id)">
                 <div class="panel-heading">
                     <div class="panel-title">{{product.name}}</div>
                 </div>
