@@ -10,7 +10,7 @@ let service = {
 };
 
 function getProducts() {
-    const raw = 'SELECT ??, ??, ??, ??, ??, ??  as category FROM product p JOIN category c ON ?? = ??';
+    const raw = 'SELECT ??, ??, ??, ??, ??, ?? as category, ?? FROM product p JOIN category c ON ?? = ??';
 
     const inserts = [
         'p.product_id',
@@ -19,6 +19,7 @@ function getProducts() {
         'p.model',
         'p.price',
         'c.name',
+        'p.img_url',
         'c.category_id',
         'p.category_id'
     ];

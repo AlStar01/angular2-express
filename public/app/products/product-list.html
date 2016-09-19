@@ -7,7 +7,7 @@
 
     <br>
 
-    <div class="row" *ngIf="products">
+    <!--<div class="row" *ngIf="products">
         <div class="col-sm-3" *ngFor="let product of products">
             <div class="panel panel-default" (click)="goToDetail(product.product_id)">
                 <div class="panel-heading">
@@ -19,6 +19,19 @@
                     <span><strong>Model: </strong> {{product.model}}</span>
                     <br><br>
                     <span><strong>Price:</strong> {{product.price | currency:'USD':'$'}}</span>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+    <div class="row" *ngIf="products">
+        <div class="col-sm-3" *ngFor="let product of products">
+            <div class="card" (click)="goToDetail(product.product_id)">
+                <img [src]="product.img_url" [alt]="product.name" class="card-img">
+                <div class="card-block">
+                    <h4 class="card-title">{{product.name}}</h4>
+                    <p class="card-text">{{product.description}}</p>
+                    <button class="btn btn-primary" (click)="goToDetail(product.product_id)">Details</button>
                 </div>
             </div>
         </div>
