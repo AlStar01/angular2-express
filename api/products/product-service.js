@@ -10,7 +10,7 @@ let service = {
 };
 
 function getProducts() {
-    const raw = 'SELECT ??, ??, ??, ??, ??, ?? as category, ?? FROM product p JOIN category c ON ?? = ??';
+    const raw = 'SELECT DISTINCT ??, ??, ??, ??, ??, ?? as category, ?? FROM product p JOIN category c ON ?? = ??';
 
     const inserts = [
         'p.product_id',
@@ -41,11 +41,30 @@ function getProducts() {
 }
 
 function getProduct(id) {
+    const raw = 'SELECT DISTINCT ??, ??, ??, ??, ??, ?? as category, ??, ??, ?? FROM product p JOIN category c ON ?? = ?? WHERE product_id = ?';
+
+    const inserts = [
+        'p.product_id',
+        'p.name',
+        'p.description',
+        'p.model',
+        'p.price',
+        'c.name',
+        'p.img_url',
+        'p.created_on',
+        'p.modified_on',
+        'c.category_id',
+        'p.category_id',
+        id
+    ];
+
+    const sql = mysql.format(raw, inserts);
+    
     return new Promise((resolve, reject) => {
         db.getConnection((err, connection) => {
             if(err) return reject(err);
 
-            connection.query('SELECT * FROM product where product_id = ?', [id], (err, rows) => {
+            connection.query(sql, (err, rows) => {
                 if(err) return reject(err);
                 if(rows.length === 0) return reject("No results")
 

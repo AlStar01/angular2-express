@@ -1,10 +1,29 @@
-<div class="container">
+<div class="container" *ngIf="product">
     <div class="row">
-        <div class="col-sm-12" *ngIf="product">
+        <div class="col-sm-2">
+            <img [src]="product.img_url" alt="{{product.name}}" class="img-responsive">
+        </div>
+        <div class="col-sm-10">
             <h1>{{product.name}}</h1>
             <p class="lead">{{product.description}}</p>
         </div>
     </div>
+
+    <br>
+    <br>
+
+    <div class="row">
+        <div class="col-sm-12" >
+            <p><strong>Model:</strong> {{ product.model }}</p>
+            <p><strong>Price:</strong> {{ product.price | currency:'USD':true:'4.2-2' }}</p>
+            <p><strong>Category:</strong> <a>{{ product.category }}</a></p>
+            <p><strong>Created on:</strong> {{ product.created_on | date:'medium' }}</p>
+            <p *ngIf="isModified()"><strong>Modified on:</strong> {{ product.modified_on | date:'medium' }}</p>
+        </div>
+    </div>
+
+    <br>
+    <br>
 
     <div class="row">
         <div class="col-sm-12">

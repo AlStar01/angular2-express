@@ -34,6 +34,10 @@ export class ProductDetailComponent implements OnInit {
         );
     }
 
+    isModified(): boolean {
+        return this.product.modified_on > this.product.created_on;
+    }
+
     goBack() {
         window.history.back();
     }
