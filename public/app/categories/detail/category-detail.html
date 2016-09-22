@@ -1,0 +1,17 @@
+<div class="container" *ngIf="category">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Category: {{ category.name }}</h1>
+            <p class="lead">{{ category.description }}</p>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="btn btn-primary" (click)="goBack()">Back</button>
+        </div>
+    </div>
+</div>

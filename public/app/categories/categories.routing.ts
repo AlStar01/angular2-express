@@ -2,9 +2,11 @@ import { ModuleWithProviders } from '@angular/core';
 
 import { Routes, RouterModule } from '@angular/router';
 
+import { CategoryDetailComponent } from './detail/category-detail.component';
 import { CategoryProductsComponent } from './category-products.component';
 
 const routes: Routes = [
+    { path: 'categories/:id', component: CategoryDetailComponent },
     { path: 'categories/:id/products', component: CategoryProductsComponent }
 ];
 

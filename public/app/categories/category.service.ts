@@ -6,12 +6,20 @@ import { Observable } from 'rxjs/observable';
 
 import { Product } from '../products/product';
 
+import { Category } from './category';
+
 @Injectable()
 export class CategoryService {
 
     categoriesUrl: string = 'api/categories'
 
     constructor(private http: Http) { }
+
+    getCategoryById(categoryId: number): Observable<Category> {
+        return this.http.get(`${this.categoriesUrl}/${categoryId}`)
+                        .map(this.extractData)
+                        .catch(this.handleError);
+    }
 
     getProductsByCategory(categoryId: number): Observable<Product[]> {
         return this.http.get(`${this.categoriesUrl}/${categoryId}/products`)
