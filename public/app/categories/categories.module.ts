@@ -5,7 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 import { routing } from './categories.routing';
 
 import { CategoryDetailComponent } from './detail/category-detail.component';
-import { CategoryProductsComponent } from './category-products.component'
+import { CategoryProductsComponent } from './products/category-products.component'
 import { CategoryService} from './category.service';
 
 @NgModule({

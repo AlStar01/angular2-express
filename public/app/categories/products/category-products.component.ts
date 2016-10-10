@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
-import { Product } from '../products/product';
-import { Category } from '../categories/category';
-import { CategoryService } from './category.service';
+import { Product } from '../../products/product';
+import { Category } from '../category';
+import { CategoryService } from '../category.service';
 
 import { Observable } from 'rxjs/observable';
 
 @Component({
-    templateUrl: 'app/categories/category-products.html'
+    templateUrl: 'app/categories/products/category-products.html'
 })
 export class CategoryProductsComponent implements OnInit {
     errorMessage: string;
