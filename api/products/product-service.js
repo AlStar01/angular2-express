@@ -41,7 +41,7 @@ function getProducts() {
 }
 
 function getProduct(id) {
-    const raw = 'SELECT DISTINCT ??, ??, ??, ??, ??, ?? as category, ??, ??, ?? FROM product p JOIN category c ON ?? = ?? WHERE product_id = ?';
+    const raw = 'SELECT DISTINCT ??, ??, ??, ??, ??, ?? as category, ??, ??, ??, ?? FROM product p JOIN category c ON ?? = ?? WHERE product_id = ?';
 
     const inserts = [
         'p.product_id',
@@ -50,6 +50,7 @@ function getProduct(id) {
         'p.model',
         'p.price',
         'c.name',
+        'c.category_id',
         'p.img_url',
         'p.created_on',
         'p.modified_on',

@@ -15,8 +15,8 @@
     <div class="row">
         <div class="col-sm-12" >
             <p><strong>Model:</strong> {{ product.model }}</p>
-            <p><strong>Price:</strong> {{ product.price | currency:'USD':true:'4.2-2' }}</p>
-            <p><strong>Category:</strong> <a>{{ product.category }}</a></p>
+            <p><strong>Price:</strong> {{ product.price | currency:'USD':'$' }}</p>
+            <p><strong>Category:</strong> <a (click)="goToProductsByCategory(product.category_id)">{{ product.category }}</a></p>
             <p><strong>Created on:</strong> {{ product.created_on | date:'medium' }}</p>
             <p *ngIf="isModified()"><strong>Modified on:</strong> {{ product.modified_on | date:'medium' }}</p>
         </div>

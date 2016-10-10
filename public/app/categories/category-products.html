@@ -1,1 +1,35 @@
-<h1>Category: </h1>
+<div class="container" *ngIf="category">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Category: {{ category.name }}</h1>
+            <p class="lead">{{ category.description }}</p>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="row" *ngIf="products">
+        <div class="col-sm-3" *ngFor="let product of products">
+            <div class="panel panel-default" (click)="goToDetail(product.product_id)">
+                <div class="panel-heading">
+                    <div class="panel-title">{{product.name}}</div>
+                </div>
+                <div class="panel-body">
+                    <span><strong>Category: </strong> {{product.category}}</span>
+                    <br><br>
+                    <span><strong>Model: </strong> {{product.model}}</span>
+                    <br><br>
+                    <span><strong>Price:</strong> {{product.price | currency:'USD':'$'}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="btn btn-primary" (click)="goBack()">Back</button>
+        </div>
+    </div>
+</div>

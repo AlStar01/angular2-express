@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { Product } from '../product'
 import { ProductService } from '../product.service';
@@ -14,6 +14,7 @@ export class ProductDetailComponent implements OnInit {
 
     constructor(
         private productService: ProductService,
+        private router: Router,
         private route: ActivatedRoute) { }
 
     ngOnInit() {
@@ -36,6 +37,10 @@ export class ProductDetailComponent implements OnInit {
 
     isModified(): boolean {
         return this.product.modified_on > this.product.created_on;
+    }
+
+    goToProductsByCategory(categoryId: number) {
+        this.router.navigate([`/categories/${categoryId}/products`]);
     }
 
     goBack() {

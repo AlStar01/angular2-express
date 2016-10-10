@@ -21,7 +21,7 @@ export class CategoryService {
                         .catch(this.handleError);
     }
 
-    getProductsByCategory(categoryId: number): Observable<Product[]> {
+    getProductsByCategory(categoryId: number): Observable<{ category: Category; products: Product[]; }> {
         return this.http.get(`${this.categoriesUrl}/${categoryId}/products`)
                         .map(this.extractData)
                         .catch(this.handleError);
