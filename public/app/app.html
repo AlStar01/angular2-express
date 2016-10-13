@@ -7,12 +7,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand">Inventory App</a>
+            <a class="navbar-brand" routerLink="">Inventory App</a>
         </div>
         <div class="collapse navbar-collapse" [collapse]="isCollapsed">
             <ul class="nav navbar-nav navbar-left">
-                <li><a routerLink="dashboard" routerLinkActive="active">Dashboard</a></li>
-                <li><a routerLink="products" routerLinkActive="active">Products</a></li>
+                <li routerLinkActive="active"><a routerLink="dashboard">Dashboard</a></li>
+                <li routerLinkActive="active"><a routerLink="products">Products</a></li>
             </ul>
         </div>
     </div>

@@ -1,19 +1,12 @@
 <div class="container" *ngIf="product">
     <div class="row">
-        <div class="col-sm-2">
+        <div class="col-sm-3">
             <img [src]="product.img_url" alt="{{product.name}}" class="img-responsive">
         </div>
-        <div class="col-sm-10">
+        <div class="col-sm-8 col-sm-offset-1">
             <h1>{{product.name}}</h1>
             <p class="lead">{{product.description}}</p>
-        </div>
-    </div>
 
-    <br>
-    <br>
-
-    <div class="row">
-        <div class="col-sm-12" >
             <p><strong>Model:</strong> {{ product.model }}</p>
             <p><strong>Price:</strong> {{ product.price | currency:'USD':'$' }}</p>
             <p><strong>Category:</strong> <a (click)="goToProductsByCategory(product.category_id)">{{ product.category }}</a></p>
@@ -22,6 +15,7 @@
         </div>
     </div>
 
+    <br>
     <br>
     <br>
 
