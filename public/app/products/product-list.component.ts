@@ -13,6 +13,7 @@ import { Observable } from 'rxjs/observable';
 export class ProductListComponent implements OnInit {
 
     products: Product[];
+    filteredProducts: Product[];
     errorMessage: string;
 
     constructor(
@@ -24,12 +25,21 @@ export class ProductListComponent implements OnInit {
     private getProducts() {
         this.productService.getProducts()
                             .subscribe(
-                                products => this.products = products,
+                                products => {
+                                    this.products = products;
+                                    this.filteredProducts = products;
+                                },
                                 error => this.errorMessage = <any>error
                             );
     }
 
     goToDetail(productId: number) {
         this.router.navigate(['/products', productId]);
+    }
+
+    onKey(value: string) {
+        this.filteredProducts = this.products.filter((product) => {
+            product.name.toLocaleLowerCase().indexOf(value.toLocaleLowerCase()) > -1
+        });
     }
 }
