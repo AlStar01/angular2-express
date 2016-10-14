@@ -6,14 +6,26 @@
     </div>
 
     <div class="row">
-        <div class="col-sm-3 col-sm-offset-9">
-            <form>
+        <form>
+            <div class="col-sm-3 col-sm-offset-6">
                 <div class="form-group">
-                    <label for="filter" class="sr-only"></label>
+                    <label for="sort" class="sr-only">Sort products</label>
+                    <select class="form-control" name="sort" #sort (change)="onSelect(sort.value)">
+                        <option value="">-- Select option --</option>
+                        <option value="name_false">Name ascending</option>
+                        <option value="name_true">Name descending</option>
+                        <option value="price_false">Price ascending</option>
+                        <option value="price_true">Price descending</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="filter" class="sr-only">Filter products</label>
                     <input class="form-control" type="search" name="filter" #filter (keyup)="onKey(filter.value)" placeholder="Search for product">
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 
     <br>
