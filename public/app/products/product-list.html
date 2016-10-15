@@ -1,49 +1,57 @@
-<div class="container"> 
-    <div class="row">
-        <div class="col-sm-12">
-            <h2>Products</h2>
-        </div>
-    </div>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<h2>Products</h2>
+		</div>
+	</div>
 
-    <div class="row">
-        <form>
-            <div class="col-sm-3 col-sm-offset-6">
-                <div class="form-group">
-                    <label for="sort" class="sr-only">Sort products</label>
-                    <select class="form-control" name="sort" #sort (change)="onSelect(sort.value)">
+	<div class="row">
+		<div class="col-sm-12">
+			<form class="form-inline">
+				<div class="form-group">
+					<label for="sort" class="sr-only">Sort option</label>
+					<select class="form-control" name="sort" #sort (change)="onSelect(sort.value)">
                         <option value="">-- Select option --</option>
                         <option value="name_false">Name ascending</option>
                         <option value="name_true">Name descending</option>
                         <option value="price_false">Price ascending</option>
                         <option value="price_true">Price descending</option>
                     </select>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label for="filter" class="sr-only">Filter products</label>
-                    <input class="form-control" type="search" name="filter" #filter (keyup)="onKey(filter.value)" placeholder="Search for product">
-                </div>
-            </div>
-        </form>
-    </div>
+				</div>
+				<div class="form-group">
+					<label for="sort" class="sr-only">Category</label>
+					<select class="form-control" name="category" id="category" #category (change)="onCategorySelect(category.value)">
+						<option value="-1">-- Select category --</option>
+						<option *ngFor="let category of categories" [value]="category.category_id">{{category.name}}</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="filter" class="sr-only">Filter products</label>
+					<input class="form-control" type="search" id="filter" name="filter"  [(ngModel)]="search" (keyup)="onKey(search)" placeholder="Search for product">
+				</div>
+				<button type="button" class="btn btn-default" aria-label="Clear Filters" (click)="resetForm()">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+			</form>
+		</div>
+	</div>
 
-    <br>
+	<br>
 
-    <div class="row" *ngIf="products">
-        <div class="col-sm-3" *ngFor="let product of filteredProducts">
-            <div class="panel panel-default" (click)="goToDetail(product.product_id)">
-                <div class="panel-heading">
-                    <div class="panel-title">{{product.name}}</div>
-                </div>
-                <div class="panel-body">
-                    <span><strong>Category: </strong> {{product.category}}</span>
-                    <br><br>
-                    <span><strong>Model: </strong> {{product.model}}</span>
-                    <br><br>
-                    <span><strong>Price:</strong> {{product.price | currency:'USD':'$'}}</span>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="row" *ngIf="products">
+		<div class="col-sm-3" *ngFor="let product of filteredProducts">
+			<div class="panel panel-default" (click)="goToDetail(product.product_id)">
+				<div class="panel-heading">
+					<div class="panel-title">{{product.name}}</div>
+				</div>
+				<div class="panel-body">
+					<span><strong>Category: </strong> {{product.category}}</span>
+					<br><br>
+					<span><strong>Model: </strong> {{product.model}}</span>
+					<br><br>
+					<span><strong>Price:</strong> {{product.price | currency:'USD':'$'}}</span>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
