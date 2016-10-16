@@ -101,7 +101,7 @@ export class ProductListComponent implements OnInit {
     }
 
     private sortByName(reverse: string): Product[] {
-        const sorted: Product[] = this.products.sort((a, b) => {
+        const sorted: Product[] = this.filteredProducts.sort((a, b) => {
             if(a.name < b.name) return -1;
             if(a.name > b.name) return 1;
             return 0;
@@ -112,7 +112,7 @@ export class ProductListComponent implements OnInit {
     }
 
     private sortByPrice(reverse: string): Product[] {
-        return reverse === 'true' ? this.products.sort((a, b) => b.price - a.price) : this.products.sort((a, b) => a.price - b.price);
+        return reverse === 'true' ? this.filteredProducts.sort((a, b) => b.price - a.price) : this.filteredProducts.sort((a, b) => a.price - b.price);
     }
 
     private getCategories(): Category[] {
