@@ -4,7 +4,7 @@ import { SharedModule } from '../shared/shared.module';
 
 import { routing } from './products.routing';
 
-import { ProductListComponent } from './product-list.component';
+import { ProductListComponent } from './list/product-list.component';
 import { ProductDetailComponent } from './detail/product-detail.component';
 import { ProductService } from './product.service';
 

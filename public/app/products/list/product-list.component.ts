@@ -2,15 +2,16 @@ import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 
-import { Product } from './product';
-import { ProductService } from './product.service';
+import { Product } from '../product';
+import { ProductService } from '../product.service';
+import { SortOption } from './sort-option';
 
-import { Category } from '../categories/category';
+import { Category } from '../../categories/category';
 
 import { Observable } from 'rxjs/observable';
 
 @Component({
-    templateUrl: 'app/products/product-list.html'
+    templateUrl: 'app/products/list/product-list.html'
 })
 export class ProductListComponent implements OnInit {
 
@@ -20,7 +21,16 @@ export class ProductListComponent implements OnInit {
 
     errorMessage: string;
 
+    sortOptions: SortOption[] = [
+        { property: '', reverse: false, display: '-- Select option --' },
+        { property: 'name', reverse: false, display: 'Name ascending' },
+        { property: 'name', reverse: true, display: 'Name descending' },
+        { property: 'price', reverse: false, display: 'Price ascending' },
+        { property: 'price', reverse: true, display: 'Price descending' }
+    ];
+
     search: string;
+    sortOption: SortOption = this.sortOptions[0];
 
     constructor(
         private productService: ProductService,
@@ -49,8 +59,8 @@ export class ProductListComponent implements OnInit {
         this.categories = this.getCategories();
     }
 
-    onSelect(option: string) {
-        this.filteredProducts = this.sort(option.split('_'));
+    onSelect(option: SortOption) {
+        this.filteredProducts = this.sort(option);
     }
 
     onCategorySelect(categoryId: string) {
@@ -87,32 +97,31 @@ export class ProductListComponent implements OnInit {
         }
     }
 
-    private sort(criteria: any[]): Product[] {
-        let [property, reverse] = criteria;
+    private sort(option: SortOption): Product[] {
         
-        switch(property) {
+        switch(option.property) {
             case 'name':
-                return this.sortByName(reverse);
+                return this.sortByName(option.reverse);
             case 'price':
-                return this.sortByPrice(reverse);
+                return this.sortByPrice(option.reverse);
             default:
                 return this.products;
         }
     }
 
-    private sortByName(reverse: string): Product[] {
+    private sortByName(reverse: boolean): Product[] {
         const sorted: Product[] = this.filteredProducts.sort((a, b) => {
             if(a.name < b.name) return -1;
             if(a.name > b.name) return 1;
             return 0;
         });
 
-        if(reverse === 'false') return sorted.reverse();
+        if(reverse) return sorted.reverse();
         return sorted;
     }
 
-    private sortByPrice(reverse: string): Product[] {
-        return reverse === 'true' ? this.filteredProducts.sort((a, b) => b.price - a.price) : this.filteredProducts.sort((a, b) => a.price - b.price);
+    private sortByPrice(reverse: boolean): Product[] {
+        return reverse ? this.filteredProducts.sort((a, b) => b.price - a.price) : this.filteredProducts.sort((a, b) => a.price - b.price);
     }
 
     private getCategories(): Category[] {

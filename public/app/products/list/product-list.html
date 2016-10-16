@@ -10,12 +10,8 @@
 			<form class="form-inline">
 				<div class="form-group">
 					<label for="sort" class="sr-only">Sort option</label>
-					<select class="form-control" name="sort" #sort (change)="onSelect(sort.value)">
-                        <option value="">-- Select option --</option>
-                        <option value="name_false">Name ascending</option>
-                        <option value="name_true">Name descending</option>
-                        <option value="price_false">Price ascending</option>
-                        <option value="price_true">Price descending</option>
+					<select class="form-control" name="sort" id="sort" [(ngModel)]="sortOption" (ngModelChange)="onSelect(sortOption)">
+                        <option *ngFor="let option of sortOptions" [ngValue]="option">{{option.display}}</option>
                     </select>
 				</div>
 				<div class="form-group">
