@@ -45,7 +45,7 @@ export class ProductListComponent implements OnInit {
     }
 
     onKey(value: string) {
-        this.filteredProducts = this.filter(value);
+        this.filteredProducts = this.filterByString(value);
         this.categories = this.getCategories();
     }
 
@@ -54,7 +54,7 @@ export class ProductListComponent implements OnInit {
     }
 
     onCategorySelect(categoryId: string) {
-        console.log(+categoryId);
+        this.filteredProducts = this.filterByCategory(+categoryId);
     }
 
     resetForm() {
@@ -65,7 +65,7 @@ export class ProductListComponent implements OnInit {
 
     ////////////////////////////////////////////////////
 
-    private filter(criteria: string): Product[] {
+    private filterByString(criteria: string): Product[] {
         if(!criteria || criteria.length === 0) return this.products;
 
         return this.products.filter((product) => {
@@ -73,8 +73,18 @@ export class ProductListComponent implements OnInit {
         });
     }
 
-    private filterByCategory(categoryId: number) {
-        // TODO - implement
+    private filterByCategory(categoryId: number): Product[] {
+        if(categoryId === -1) {
+            if(this.search && this.search.length > 0) {
+                return this.filterByString(this.search);
+            }
+            else {
+                return this.products;
+            }
+        }
+        else {
+            return this.filteredProducts.filter(product => product.category_id === categoryId);
+        }
     }
 
     private sort(criteria: any[]): Product[] {
@@ -106,7 +116,7 @@ export class ProductListComponent implements OnInit {
     }
 
     private getCategories(): Category[] {
-        if(this.hasChanged()) return this.mapCategories(this.filteredProducts)
+        if(this.isFiltered()) return this.mapCategories(this.filteredProducts)
         else return this.mapCategories(this.products);
     }
 
@@ -118,7 +128,7 @@ export class ProductListComponent implements OnInit {
 
     ///////////////////////////////////////////
 
-    private hasChanged(): boolean {
+    private isFiltered(): boolean {
         return JSON.stringify(this.filteredProducts) !== JSON.stringify(this.products);
     }
 }
