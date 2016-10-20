@@ -30,13 +30,16 @@ export class ProductListComponent implements OnInit {
     ];
 
     search: string;
-    sortOption: SortOption = this.sortOptions[0];
+    sortOption: SortOption;
 
     constructor(
         private productService: ProductService,
         private router: Router) {}
 
-    ngOnInit() { this.getProducts(); }
+    ngOnInit() { 
+        this.getProducts();
+        this.sortOption = this.sortOptions[0];
+    }
 
     private getProducts() {
         this.productService.getProducts()
@@ -71,6 +74,7 @@ export class ProductListComponent implements OnInit {
         this.search = '';
         this.filteredProducts = this.products;
         this.categories = this.getCategories();
+        this.sortOption = this.sortOptions[0];
     }
 
     ////////////////////////////////////////////////////
@@ -93,7 +97,7 @@ export class ProductListComponent implements OnInit {
             }
         }
         else {
-            return this.filteredProducts.filter(product => product.category_id === categoryId);
+            return this.filterByString(this.search).filter(product => product.category_id === categoryId);
         }
     }
 
@@ -130,9 +134,9 @@ export class ProductListComponent implements OnInit {
     }
 
     private mapCategories(products: Product[]): Category[] {
-             return products.map(product => {
-                return { category_id: product.category_id, name: product.category };
-            })
+        return products.map(product => {
+            return { category_id: product.category_id, name: product.category };
+        });
     }
 
     ///////////////////////////////////////////
