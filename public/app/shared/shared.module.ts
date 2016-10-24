@@ -6,7 +6,7 @@ import { HttpModule }               from '@angular/http';
 import { AutoFocusDirective }       from './auto-focus.directive';
 import { SelectOnFocusDirective }   from './select-on-focus.directive'
 
-import { Ng2BootstrapModule }       from 'ng2-bootstrap/ng2-bootstrap';
+// import { Ng2BootstrapModule }       from 'ng2-bootstrap/ng2-bootstrap';
 
 @NgModule({
     imports:        [ CommonModule ],
@@ -16,7 +16,7 @@ import { Ng2BootstrapModule }       from 'ng2-bootstrap/ng2-bootstrap';
                       SelectOnFocusDirective, 
                       CommonModule, 
                       FormsModule,
-                      HttpModule,
-                      Ng2BootstrapModule ]
+                      HttpModule ]
+                      //Ng2BootstrapModule 
 })
 export class SharedModule { }

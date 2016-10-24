@@ -14,9 +14,9 @@ export class AppComponent implements OnInit {
     constructor(private router: Router) { }
 
     ngOnInit() {
-        this.router.events
-            .filter(event => event instanceof NavigationStart)
-            .subscribe(this.collapseNav);
+        // this.router.events
+        //     .filter(event => event instanceof NavigationStart)
+        //     .subscribe(this.collapseNav);
     }
 
     private collapseNav(): void {
