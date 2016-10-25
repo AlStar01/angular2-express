@@ -15,6 +15,12 @@ export class CategoryService {
 
     constructor(private http: Http) { }
 
+    getCategories(): Observable<Category[]> {
+        return this.http.get(`${this.categoriesUrl}`)
+                        .map(this.extractData)
+                        .catch(this.handleError);
+    }
+
     getCategoryById(categoryId: number): Observable<Category> {
         return this.http.get(`${this.categoriesUrl}/${categoryId}`)
                         .map(this.extractData)

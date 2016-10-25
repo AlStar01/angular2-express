@@ -4,6 +4,8 @@
             <h1>Add New Product</h1>
             <p class="lead">Fill out the information below to add a new product.</p>
             <form class="form-horizontal" (ngSubmit)="onSubmit()" #productAddForm="ngForm">
+                {{product | json}}
+
                 <div class="form-group" [ngClass]="{'has-error': hasError(name)}">
                     <label class="col-sm-2 control-label" for="name">Name</label>
                     <div class="col-sm-10">
@@ -29,8 +31,9 @@
                 <div class="form-group" [ngClass]="{'has-error': hasError(category)}">
                     <label class="col-sm-2 control-label" for="category">Category</label>
                     <div class="col-sm-10">
-                        <select class="form-control" name="category" id="category" #category="ngModel" [(ngModel)]="product.category" required>
-                            <option (ngValue)="-1">-- Select Category --</option>
+                        <select class="form-control" name="category" id="category" #category="ngModel" [(ngModel)]="product.category_id" required>
+                            <option value="-1">-- Select category --</option>
+                            <option *ngFor="let category of categories" [value]="category.category_id">{{category.name}}</option>
                         </select>
                     </div>
                 </div>

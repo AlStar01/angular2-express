@@ -12,7 +12,9 @@ import { CategoryService } from '../../categories/category.service';
     templateUrl: 'app/products/add/product-add.html'
 })
 export class ProductAddComponent implements OnInit {
-    product: Product = new Product(undefined, undefined, undefined, undefined, undefined, undefined);
+    errorMessage: string;
+    
+    product: Product = new Product(undefined, undefined, undefined, undefined, -1);
     quantity: number = 1;
     categories: Category[];
     
@@ -21,7 +23,7 @@ export class ProductAddComponent implements OnInit {
         private categoryService: CategoryService
     ) { }
 
-    ngOnInit() { }
+    ngOnInit() { this.getCategories(); }
 
     hasError(formControl: FormControl): boolean {
         return formControl.invalid && formControl.touched;
@@ -33,5 +35,15 @@ export class ProductAddComponent implements OnInit {
 
     goBack() {
         window.history.back();
+    }
+
+    /////////////////////////////////////
+
+    private getCategories() {
+        this.categoryService.getCategories()
+                            .subscribe(
+                                categories => this.categories = categories,
+                                error => this.errorMessage = <any> error
+                            );
     }
 }
