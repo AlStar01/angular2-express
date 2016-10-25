@@ -4,10 +4,10 @@ export class Product {
         public name: string,
         public description: string,
         public price: number,
-        public category: string,
         public img_url: string,
-        public created_on: Date,
-        public modified_on: Date,
-        public category_id?: number
+        public category_id: number,
+        public category?: string,
+        public created_on?: Date,
+        public modified_on?: Date
     ) { }
 }
