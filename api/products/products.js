@@ -25,7 +25,7 @@ router.get('/:id/tags', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    productService.addProduct(req.body, 2)
+    productService.addProduct(req.body.product, req.body.quantity)
         .then(() => res.sendStatus(200))
         .catch((err) => res.status(500).send(err));
 });

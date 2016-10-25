@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { FormControl } from '@angular/forms';
+import { FormControl, NgForm } from '@angular/forms';
 
 import { Product } from '../product';
 import { ProductService } from '../product.service';
@@ -13,8 +13,11 @@ import { CategoryService } from '../../categories/category.service';
 })
 export class ProductAddComponent implements OnInit {
     errorMessage: string;
+
+    productAddForm: NgForm;
+    @ViewChild('productAddForm') currentForm: NgForm;
     
-    product: Product = new Product(undefined, undefined, undefined, undefined, -1);
+    product: Product = new Product(undefined, undefined, undefined, undefined, undefined, -1);
     quantity: number = 1;
     categories: Category[];
     
@@ -30,7 +33,11 @@ export class ProductAddComponent implements OnInit {
     }
 
     onSubmit() {
-        console.log(this.product);
+        this.productService.addProduct(this.product, this.quantity)
+                           .subscribe(
+                               response => console.log(response),
+                               error => this.errorMessage = <any> error
+                            );
     }
 
     goBack() {
@@ -45,5 +52,9 @@ export class ProductAddComponent implements OnInit {
                                 categories => this.categories = categories,
                                 error => this.errorMessage = <any> error
                             );
+    }
+
+    private resetForm() {
+
     }
 }

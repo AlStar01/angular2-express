@@ -136,8 +136,8 @@ function addProduct(product, quantity = 1) {
         'description',
         'model',
         'price',
-        'category_id',
         'img_url',
+        'category_id',
         data
     ];
     const sql = mysql.format(raw, inserts);
@@ -165,7 +165,7 @@ function addProduct(product, quantity = 1) {
 function _getData(product, quantity) {
     let data = [];
 
-    const values = product.keys().map(key => product[key]);
+    const values = Object.keys(product).map(key => product[key]);
 
     for(let i = 0; i < quantity; i++) {
         data.push(values)
