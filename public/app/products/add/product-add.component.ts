@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { FormControl } from '@angular/forms';
+
 import { Product } from '../product';
 import { ProductService } from '../product.service';
 
@@ -12,14 +14,17 @@ import { CategoryService } from '../../categories/category.service';
 export class ProductAddComponent implements OnInit {
     product: Product = new Product(undefined, undefined, undefined, undefined, undefined, undefined);
     quantity: number = 1;
+    categories: Category[];
     
     constructor(
         private productService: ProductService,
         private categoryService: CategoryService
     ) { }
 
-    ngOnInit() {
-        
+    ngOnInit() { }
+
+    hasError(formControl: FormControl): boolean {
+        return formControl.invalid && formControl.touched;
     }
 
     onSubmit() {

@@ -4,53 +4,59 @@
             <h1>Add New Product</h1>
             <p class="lead">Fill out the information below to add a new product.</p>
             <form class="form-horizontal" (ngSubmit)="onSubmit()" #productAddForm="ngForm">
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'has-error': hasError(name)}">
                     <label class="col-sm-2 control-label" for="name">Name</label>
                     <div class="col-sm-10">
-                        <input type="text" name="name" id="name" #name [(ngModel)]="product.name" class="form-control" placeholder="Product name" autoFocus>
+                        <input type="text" name="name" id="name" #name="ngModel" [(ngModel)]="product.name" class="form-control" placeholder="Product name" autoFocus 
+                            required>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'has-error': hasError(description)}">
                     <label for="description" class="col-sm-2 control-label">Description</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" name="description" id="description" #description [(ngModel)]="product.description" rows="5" placeholder="Product description"></textarea>
+                        <textarea class="form-control" name="description" id="description" #description="ngModel" [(ngModel)]="product.description" rows="5" placeholder="Product description" 
+                            required></textarea>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'has-error': hasError(price)}">
                     <label class="col-sm-2 control-label" for="price">Price</label>
                     <div class="col-sm-10">
-                        <input type="number" name="price" id="price" #price [(ngModel)]="product.price" class="form-control" placeholder="Product price" step=".01">
+                        <input type="number" name="price" id="price" #price="ngModel" [(ngModel)]="product.price" class="form-control" placeholder="Product price" step=".01" 
+                            required
+                            min="0">
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'has-error': hasError(category)}">
                     <label class="col-sm-2 control-label" for="category">Category</label>
                     <div class="col-sm-10">
-                        <select class="form-control" name="category" id="category" #category [(ngModel)]="product.category">
+                        <select class="form-control" name="category" id="category" #category="ngModel" [(ngModel)]="product.category" required>
                             <option (ngValue)="-1">-- Select Category --</option>
                         </select>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'has-error': hasError(img_url)}">
                     <label class="col-sm-2 control-label" for="img_url">Image URL</label>
                     <div class="col-sm-10">
-                        <input type="text" name="img_url" id="img_url" #img_url [(ngModel)]="product.img_url" class="form-control" placeholder="Product image URL">
+                        <input type="text" name="img_url" id="img_url" #img_url="ngModel" [(ngModel)]="product.img_url" class="form-control" placeholder="Product image URL" 
+                            required
+                            pattern="^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$">
                     </div>
                     <div class="col-sm-2 col-sm-offset-2">
                         <br>
-                        <img class="img-responsive" [src]="img_url.value">
+                        <img *ngIf="img_url.valid" class="img-responsive" [src]="img_url.value">
                         <br>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group"  [ngClass]="{'has-error': hasError(quantityInput)}">
                     <label class="col-sm-2 control-label" for="quantity">Quantity</label>
                     <div class="col-sm-10">
-                        <input type="number" name="quantity" id="quantity" #quantityInput [(ngModel)]="quantity" class="form-control" placeholder="Quantity" step="1">
+                        <input type="number" name="quantity" id="quantity" #quantityInput="ngModel" [(ngModel)]="quantity" class="form-control" placeholder="Quantity" step="1" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-10 col-sm-offset-2">
                         <button class="btn btn-warn" (click)="goBack()">Cancel</button>
-                        <button class="btn btn-primary" type="submit">Submit</button>
+                        <button class="btn btn-primary" type="submit" [disabled]="!productAddForm.form.valid">Submit</button>
                     </div>
                 </div>
             </form>

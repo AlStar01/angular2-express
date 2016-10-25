@@ -130,13 +130,14 @@ function getProductsByTag(tagId) {
 function addProduct(product, quantity = 1) {
     const data = _getData(product, quantity);
     
-    const raw = "INSERT INTO product (??, ??, ??, ??, ??) VALUES ?"
+    const raw = "INSERT INTO product (??, ??, ??, ??, ??, ??) VALUES ?"
     const inserts = [
         'name', 
         'description',
         'model',
         'price',
         'category_id',
+        'img_url',
         data
     ];
     const sql = mysql.format(raw, inserts);
@@ -164,13 +165,9 @@ function addProduct(product, quantity = 1) {
 function _getData(product, quantity) {
     let data = [];
 
-    for(let i = 0; i < quantity; i++) {
-        let values = [];
-        
-        for(let property in product) {
-            values.push(product[property]);
-        }
+    const values = product.keys().map(key => product[key]);
 
+    for(let i = 0; i < quantity; i++) {
         data.push(values)
     }
 
