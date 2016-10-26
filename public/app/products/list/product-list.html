@@ -41,10 +41,13 @@
 		<div class="col-sm-3" *ngFor="let product of filteredProducts">
 			<div class="panel panel-default" (click)="goToDetail(product.product_id)">
 				<div class="panel-heading">
-					<div class="panel-title">{{product.name}}</div>
+					<div class="panel-title clearfix">
+						<div class="pull-left">{{product.name}}</div>
+						<div class="pull-right"><span class="badge badge-primary">{{product.quantity}}</span></div>
+					</div>
 				</div>
 				<div class="panel-body">
-					<span><strong>Category: </strong> {{product.category}}</span>
+					<span><strong>Category:</strong> </span> <span class="label label-success">{{product.category}}</span>
 					<br><br>
 					<span><strong>Model: </strong> {{product.model}}</span>
 					<br><br>

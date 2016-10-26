@@ -8,6 +8,7 @@ export class Product {
         public category_id: number,
         public product_id?: number,
         public category?: string,
+        public quantity?: number,
         public created_on?: Date,
         public modified_on?: Date
     ) { }

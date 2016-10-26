@@ -22,3 +22,7 @@
 .card-title {
   margin-bottom: .75rem;
 }
+
+.badge-primary {
+    background-color: #337ab7;
+}

@@ -26,7 +26,9 @@ export class ProductListComponent implements OnInit {
         { property: 'name', reverse: false, display: 'Name ascending' },
         { property: 'name', reverse: true, display: 'Name descending' },
         { property: 'price', reverse: false, display: 'Price ascending' },
-        { property: 'price', reverse: true, display: 'Price descending' }
+        { property: 'price', reverse: true, display: 'Price descending' },
+        { property: 'quantity', reverse: false, display: 'Quantity ascending'},
+        { property: 'quantity', reverse: true, display: 'Quantity descending'}
     ];
 
     search: string;
@@ -108,6 +110,8 @@ export class ProductListComponent implements OnInit {
                 return this.sortByName(option.reverse);
             case 'price':
                 return this.sortByPrice(option.reverse);
+            case 'quantity':
+                return this.sortByQuantity(option.reverse);
             default:
                 return this.products;
         }
@@ -126,6 +130,10 @@ export class ProductListComponent implements OnInit {
 
     private sortByPrice(reverse: boolean): Product[] {
         return reverse ? this.filteredProducts.sort((a, b) => b.price - a.price) : this.filteredProducts.sort((a, b) => a.price - b.price);
+    }
+
+    private sortByQuantity(reverse: boolean): Product[] {
+        return reverse ? this.filteredProducts.sort((a, b) => b.quantity - a.quantity) : this.filteredProducts.sort((a, b) => a.quantity - b.quantity);
     }
 
     private getCategories(): Category[] {
