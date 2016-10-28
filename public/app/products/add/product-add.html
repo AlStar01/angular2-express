@@ -48,11 +48,11 @@
                         <input type="text" name="tags" #tagsControl class="form-control" (blur)="addTags(tagsControl)" placeholder="Product tags">
                         <span class="help-block">Seperate tags with commas</span>
                         <ul class="list-inline tags">
-                            <li *ngFor="let tag of tags" class="tag">
-                                <div class="label label-primary">
+                            <li *ngFor="let tag of tags">
+                                <span class="label label-primary tag">
                                     <span>{{tag.name}}</span>
                                     <button type="button" class="close" aria-label="Close" (click)="removeTag(index)"><span aria-hidden="true">&times;</span></button>
-                                </div>
+                                </span>
                             </li>
                         </ul>
                     </div>
