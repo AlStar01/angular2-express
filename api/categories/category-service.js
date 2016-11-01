@@ -12,7 +12,7 @@ let service = {
 function getCategories() {
     return new Promise((resolve, reject) => {
         db.getConnection((err, connection) => {
-            connection.query('SELECT * FROM category', (err, rows) => {
+            connection.query('CALL GetAllCategories()', (err, rows) => {
                 if(err) reject(err);
 
                 connection.release();
