@@ -27,7 +27,7 @@ function getCategory(id) {
         db.getConnection((err, connection) => {
             if(err) return reject(err);
 
-            connection.query('SELECT * FROM category where category_id = ?', [id], (err, rows) => {
+            connection.query('CALL GetCategoryById(?)', [id], (err, rows) => {
                 if(err) return reject(err);
                 if(rows.length === 0) return reject("No results");
 
