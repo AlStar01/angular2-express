@@ -24,11 +24,11 @@ function addCategory(category) {
         db.getConnection((err, connection) => {
             if(err) return reject(err);
 
-            connection.query('INSERT INTO category SET ?', [category], (err, result) => {
+            connection.query('SET @categoryId = 0; CALL AddCategory(?, ?, @categoryId); SELECT @categoryId;', [category.name, category.description], (err, result) => {
                 if(err) return reject(err);
 
                 connection.release();
-                return resolve(result.insertId);
+                return resolve(result[2]);
             });
         });
     });

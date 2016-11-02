@@ -3,7 +3,7 @@ DROP procedure IF EXISTS `GetCategoryById`;
 
 DELIMITER $$
 USE `sample`$$
-CREATE PROCEDURE `GetCategoryById` (IN categoryId BIGINT)
+CREATE PROCEDURE `GetCategoryById` (IN categoryId BIGINT(20))
 BEGIN
 	SELECT *
     FROM category 
