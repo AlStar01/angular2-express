@@ -2,6 +2,8 @@ let mysql = require('mysql');
 
 let db = require('../../config/db');
 
+let dbUtils = require('../../config/dbUtils');
+
 let service = {
     getCategories,
     getCategory,
@@ -10,32 +12,11 @@ let service = {
 };
 
 function getCategories() {
-    return new Promise((resolve, reject) => {
-        db.getConnection((err, connection) => {
-            connection.query('CALL GetAllCategories()', (err, rows) => {
-                if(err) reject(err);
-
-                connection.release();
-                resolve(rows);
-            });
-        });
-    });
+    return dbUtils.getAll('GetAllCategories');
 }
 
 function getCategory(id) {
-    return new Promise((resolve, reject) => {
-        db.getConnection((err, connection) => {
-            if(err) return reject(err);
-
-            connection.query('CALL GetCategoryById(?)', [id], (err, rows) => {
-                if(err) return reject(err);
-                if(rows.length === 0) return reject("No results");
-
-                connection.release();
-                return resolve(rows[0]);
-            });
-        });
-    });
+    return dbUtils.getById('GetCategoryById', id);
 }
 
 function addCategory(category) {
