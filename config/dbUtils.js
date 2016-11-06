@@ -16,7 +16,7 @@ function getAll(procedure) {
                 if(err) reject(err);
 
                 connection.release();
-                resolve(rows); 
+                resolve(rows[0]); 
             });
         });
     });

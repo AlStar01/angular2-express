@@ -1,5 +1,6 @@
 let mysql = require('mysql');
 let db = require('../../config/db');
+let dbUtils = require('../../config/dbUtils');
 
 let service = {
     getProducts,
@@ -10,38 +11,7 @@ let service = {
 };
 
 function getProducts() {
-    const raw = 'SELECT DISTINCT ??, ??, ??, ??, ??, ?? as category, ??, ??, COUNT(??) as quantity FROM product p JOIN category c ON ?? = ?? GROUP BY ?? ORDER BY ?? DESC';
-
-    const inserts = [
-        'p.product_id',
-        'p.name',
-        'p.description',
-        'p.model',
-        'p.price',
-        'c.name',
-        'c.category_id',
-        'p.img_url',
-        'p.product_id',
-        'c.category_id',
-        'p.category_id',
-        'p.model',
-        'quantity'
-    ];
-
-    const sql = mysql.format(raw, inserts);
-    
-    return new Promise((resolve, reject) => {
-        db.getConnection((err, connection) => {
-            if(err) return reject(err);
-
-            connection.query(sql, (err, rows) => {
-                if(err) return reject(err);
-
-                connection.release();
-                return resolve(rows);
-            });
-        });
-    });
+    return dbUtils.getAll('GetProducts');
 }
 
 function getProduct(id) {

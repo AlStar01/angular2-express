@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS `Product` (
 	`model` VARCHAR(200) NOT NULL,
     `price` NUMERIC (10,2) NOT NULL,
 	`category_id` BIGINT(20) NOT NULL,
-	`img_url` VARCHAR(200) NOT NULL,
+	`featured_image` VARCHAR(200) NOT NULL,
     `created_on` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `modified_on` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	FOREIGN KEY fk_category (`category_id`)
