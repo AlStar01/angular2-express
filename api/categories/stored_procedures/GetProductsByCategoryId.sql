@@ -1,9 +1,9 @@
 USE `sample`;
-DROP procedure IF EXISTS `GetProductsByCategory`;
+DROP procedure IF EXISTS `GetProductsByCategoryId`;
 
 DELIMITER $$
 USE `sample`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `GetProductsByCategory`(IN categoryId BIGINT(20))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetProductsByCategoryId`(IN categoryId BIGINT(20))
 BEGIN
 	SELECT DISTINCT
 		p.product_id,
@@ -11,10 +11,10 @@ BEGIN
         p.description,
         p.model,
         p.price,
+        p.featured_image as featuredImage,
         c.category_id as categoryId,
         c.name as categoryName,
         c.description as categoryDescription,
-        p.img_url,
         COUNT(p.product_id) as quantity
 	FROM
 		product p

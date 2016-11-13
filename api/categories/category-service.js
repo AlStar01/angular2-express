@@ -8,7 +8,7 @@ let service = {
     getCategories,
     getCategory,
     addCategory,
-    getProductsByCategory
+    getProductsByCategoryId
 };
 
 function getCategories() {
@@ -34,8 +34,8 @@ function addCategory(category) {
     });
 }
 
-function getProductsByCategory(categoryId) {
-    return dbUtils.getById('GetProductsByCategory', categoryId);
+function getProductsByCategoryId(categoryId) {
+    return dbUtils.getById('GetProductsByCategoryId', categoryId);
 }
 
 module.exports = service;

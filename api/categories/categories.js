@@ -18,7 +18,7 @@ router.get('/:id', (req, res) => {
 });
 
 router.get('/:id/products', (req, res) => {
-    categoryService.getProductsByCategory(req.params.id)
+    categoryService.getProductsByCategoryId(req.params.id)
         .then(categories => res.send(categories))
         .catch(err => res.status(500).send(err));
 });
