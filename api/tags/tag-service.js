@@ -33,7 +33,7 @@ function getTag(id) {
 
 /**
  * Add new tag
- * @param {tag}
+ * @param {object} tag - tag
  * @returns {number} inserted tag_id
  */
 function addTag(tag) {
@@ -41,13 +41,13 @@ function addTag(tag) {
         db.getConnection((err, connection) => {
             if(err) return reject(err);
 
-            connection.query('INSERT INTO tag SET ?', [tag], (err, result) => {
+            connection.query('SET @tagId = 0; CALL AddTag(?, @tagId); SELECT @tagId as tagId;', [tag.name], (err, result) => {
                 if(err) return reject(err);
 
                 connection.release();
-                return resolve(result.insertId);
+                return resolve(result[2][0]);
             });
-        })
+        });
     });
 }
 
