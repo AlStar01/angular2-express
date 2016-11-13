@@ -28,18 +28,7 @@ function getTags() {
  * @return {Promise}
  */
 function getTag(id) {
-    return new Promise((resolve, reject) => {
-        db.getConnection((err, connection) => {
-            if(err) reject(err);
-
-            connection.query('SELECT ??, ?? FROM tag WHERE ?? = ?', ['tag_id', 'name', 'tag_id', id], (err, rows) => {
-                if(err) reject(err);
-
-                connection.release();
-                resolve(rows);
-            });
-        })
-    });
+    return dbUtils.getById('GetTagById', id);
 }
 
 /**
