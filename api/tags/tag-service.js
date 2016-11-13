@@ -1,5 +1,6 @@
 let mysql = require('mysql');
 let db = require('../../config/db');
+let dbUtils = require('../../config/dbUtils');
 
 let service = {
     getTags,
@@ -18,18 +19,7 @@ let service = {
  * @return {Promise}
  */
 function getTags() {
-    return new Promise((resolve, reject) => {
-        db.getConnection((err, connection) => {
-            if(err) reject(err);
-
-            connection.query('SELECT ??, ?? FROM tag', ['tag_id', 'name'], (err, rows) => {
-                if(err) reject(err);
-
-                connection.release();
-                resolve(rows);
-            });
-        })
-    });
+    return dbUtils.getAll('GetTags');
 }
 
 /**
