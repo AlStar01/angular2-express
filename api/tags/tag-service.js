@@ -83,34 +83,8 @@ function addTagsToProduct(productId, tags) {
     });
 }
 
-function getTagsByProduct(id) {
-    const raw = "SELECT ??, ?? FROM tag t JOIN product_tag pt ON ?? = ?? JOIN product p ON ?? = ?? WHERE ?? = ?"
-
-    const inserts = [
-        't.tag_id',
-        't.name',
-        'pt.tag_id',
-        't.tag_id',
-        'p.product_id',
-        'pt.product_id',
-        'pt.product_id',
-        id
-    ];
-
-    const sql = mysql.format(raw, inserts);
-    
-    return new Promise((resolve, reject) => {
-        db.getConnection((err, connection) => {
-            if(err) return reject(err);
-
-            connection.query(sql, (err, rows) => {
-                if(err) return reject(err);
-
-                connection.release();
-                return resolve(rows);
-            });
-        })
-    });
+function getTagsByProduct(productId) {
+    return db.dbUtils.getById('GetTagsByProductId', productId);
 }
 
 /////////////////////////////////////
