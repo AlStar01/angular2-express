@@ -2,14 +2,15 @@ import { Component, OnInit } from '@angular/core';
 
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { CategoryService } from '../category.service';
 import { Category } from '../category';
+
+import { CategoryService } from '../category.service';
 
 @Component({
     moduleId: module.id,
-    templateUrl: 'category-detail.html'
+    templateUrl: 'category-edit.html'
 })
-export class CategoryDetailComponent implements OnInit {
+export class CategoryEditComponent implements OnInit {
     category: Category;
     errorMessage: string;
 
@@ -25,7 +26,7 @@ export class CategoryDetailComponent implements OnInit {
     private getCategory() {
         this.route.params.subscribe(
             params => {
-                const categoryId: number = +params['categoryId'];
+                const categoryId: number = params['categoryId'];
                 this.categoryService.getCategoryById(categoryId)
                                     .subscribe(
                                         category => this.category = category,
@@ -34,13 +35,5 @@ export class CategoryDetailComponent implements OnInit {
             },
             error => this.errorMessage = <any> error
         );
-    }
-
-    goToEditCategory() {
-        this.router.navigate(['edit'], { relativeTo: this.route });
-    }
-
-    goBack() {
-        window.history.back();
     }
 }
