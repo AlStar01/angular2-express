@@ -36,7 +36,7 @@ export class ProductDetailComponent implements OnInit {
     }
 
     isModified(): boolean {
-        return this.product.modified_on > this.product.created_on;
+        return this.product.modifiedOn > this.product.createdOn;
     }
 
     goToProductsByCategory(categoryId: number) {

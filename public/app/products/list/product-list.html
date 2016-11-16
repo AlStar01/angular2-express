@@ -39,7 +39,7 @@
 
 	<div class="row" *ngIf="products">
 		<div class="col-sm-3" *ngFor="let product of filteredProducts">
-			<div class="panel panel-default" (click)="goToDetail(product.product_id)">
+			<div class="panel panel-default" (click)="goToDetail(product.productId)">
 				<div class="panel-heading">
 					<div class="panel-title clearfix">
 						<div class="pull-left">{{product.name}}</div>
@@ -47,7 +47,7 @@
 					</div>
 				</div>
 				<div class="panel-body">
-					<span><strong>Category:</strong> </span> <span class="label label-success">{{product.category}}</span>
+					<span><strong>Category:</strong> </span> <span class="label label-success">{{product.categoryName}}</span>
 					<br><br>
 					<span><strong>Model: </strong> {{product.model}}</span>
 					<br><br>

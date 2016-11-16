@@ -13,6 +13,8 @@ BEGIN
 			p.model,
 			p.price,
 			p.featured_image as featuredImage,
+            p.created_on as createdOn,
+            p.modified_on as modifiedOn,
 			c.category_id as categoryId,
 			c.name as categoryName,
 			c.description as categoryDescription

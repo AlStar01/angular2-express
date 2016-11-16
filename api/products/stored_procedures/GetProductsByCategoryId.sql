@@ -6,12 +6,14 @@ USE `sample`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `GetProductsByCategoryId`(IN categoryId BIGINT(20))
 BEGIN
 	SELECT DISTINCT
-		p.product_id,
+		p.product_id as productId,
         p.name,
         p.description,
         p.model,
         p.price,
         p.featured_image as featuredImage,
+        p.created_on as createdOn,
+		p.modified_on as modifiedOn,
         c.category_id as categoryId,
         c.name as categoryName,
         c.description as categoryDescription,

@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
     productService.getProduct(req.params.id)
-        .then(products => res.send(products))
+        .then(products => res.send(products[0]))
         .catch((err) => res.status(500).send(err));
 });
 

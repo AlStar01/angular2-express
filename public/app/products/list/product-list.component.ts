@@ -99,7 +99,7 @@ export class ProductListComponent implements OnInit {
             }
         }
         else {
-            return this.filterByString(this.search).filter(product => product.category_id === categoryId);
+            return this.filterByString(this.search).filter(product => product.categoryId === categoryId);
         }
     }
 
@@ -143,7 +143,7 @@ export class ProductListComponent implements OnInit {
 
     private mapCategories(products: Product[]): Category[] {
         return products.map(product => {
-            return { category_id: product.category_id, name: product.category };
+            return { category_id: product.categoryId, name: product.categoryName };
         });
     }
 
