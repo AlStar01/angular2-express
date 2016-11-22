@@ -4,7 +4,8 @@ let db = require('./db');
 
 let dbUtils = {
     getAll,
-    getById
+    getById,
+    updateById
 };
 
 function getAll(procedure) {
@@ -55,6 +56,21 @@ function addItem(procedure, values, params, selects) {
                 });
             })
             .catch(error => reject(error));
+    });
+}
+
+function updateById(procedure, ...values) {
+    const placeholders = getEscapePlaceholders(values);
+    
+    return new Promise((resolve, reject) => {
+        db.getConnection((err, connection) => {
+            connection.query(`CALL ${procedure}(${placeholders});`, values, (err, rows) => {
+                if(err) reject(err);
+
+                connection.release();
+                resolve(rows);
+            });
+        });
     });
 }
 

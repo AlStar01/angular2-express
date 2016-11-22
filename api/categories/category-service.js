@@ -40,18 +40,7 @@ function getProductsByCategoryId(categoryId) {
 }
 
 function updateCategory(category) {
-    return new Promise((resolve, reject) => {
-        db.getConnection((err, connection) => {
-            if(err) return reject(err);
-
-            connection.query('CALL UpdateCategory(?, ?, ?);', [category.categoryId, category.name, category.description], (err, result) => {
-                if(err) return reject(err);
-
-                connection.release();
-                return resolve(result);
-            });
-        });
-    });
+    return dbUtils.updateById('UpdateCategory', category.categoryId, category.name, category.description);
 }
 
 module.exports = service;
