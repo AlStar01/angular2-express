@@ -1,7 +1,25 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
-            <div *ngIf="category">{{category}}</div>
+        <div class="col-sm-12">
+            <h1>Update Category</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <form (ngSubmit)="save()" #categoryEditForm="ngForm" *ngIf="category">
+                <div class="form-group" [ngClass]="{'has-error': hasError(name)}">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]="category.name" required>
+                </div>
+                <div class="form-group" [ngClass]="{'has-error': hasError(description)}">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" name="description" #description="ngModel" [(ngModel)]="category.description" required>
+                </div>
+                 <div class="form-group">
+                    <button class="btn btn-warn" type="button" (click)="goBack()">Cancel</button>
+                    <button class="btn btn-primary" type="submit" [disabled]="!categoryEditForm.form.valid">Submit</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

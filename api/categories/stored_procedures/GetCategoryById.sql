@@ -7,14 +7,14 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `GetCategoryById`(IN categoryId BIGI
 BEGIN
 	SELECT DISTINCT
 		category_id as categoryId,
-        name,
-        description,
-        created_on as createdOn,
-        modified_on as modifiedOn
-    FROM 
-		category 
-    WHERE 
-		category_id = categoryId;
+    name,
+    description,
+    created_on as createdOn,
+    modified_on as modifiedOn
+  FROM 
+    category 
+  WHERE 
+    category_id = categoryId;
 END$$
 
 DELIMITER ;

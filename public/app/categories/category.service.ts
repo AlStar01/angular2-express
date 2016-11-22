@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers } from '@angular/http';
 
 import { Observable } from 'rxjs/observable';
 
@@ -11,7 +11,8 @@ import { Category } from './category';
 @Injectable()
 export class CategoryService {
 
-    categoriesUrl: string = 'api/categories'
+    private headers = new Headers({'Content-Type': 'application/json'});
+    private categoriesUrl: string = 'api/categories'
 
     constructor(private http: Http) { }
 
@@ -30,6 +31,12 @@ export class CategoryService {
     getProductsByCategory(categoryId: number): Observable<{ category: Category; products: Product[]; }> {
         return this.http.get(`${this.categoriesUrl}/${categoryId}/products`)
                         .map(this.extractData)
+                        .catch(this.handleError);
+    }
+
+    updateCategory(category: Category): Observable<number> {
+        return this.http.put(`${this.categoriesUrl}/${category.categoryId}`, category)
+                        .map(res => res)
                         .catch(this.handleError);
     }
 
