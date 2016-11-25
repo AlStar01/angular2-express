@@ -40,7 +40,7 @@ function getProductsByCategoryId(categoryId) {
 }
 
 function updateCategory(category) {
-    return dbUtils.updateById('UpdateCategory', category.categoryId, category.name, category.description);
+    return dbUtils.update('UpdateCategory', category.categoryId, category.name, category.description);
 }
 
 module.exports = service;

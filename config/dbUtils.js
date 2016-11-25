@@ -5,7 +5,7 @@ let db = require('./db');
 let dbUtils = {
     getAll,
     getById,
-    updateById
+    update
 };
 
 function getAll(procedure) {
@@ -59,7 +59,7 @@ function addItem(procedure, values, params, selects) {
     });
 }
 
-function updateById(procedure, ...values) {
+function update(procedure, ...values) {
     const placeholders = getEscapePlaceholders(values);
     
     return new Promise((resolve, reject) => {
