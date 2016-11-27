@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { Router } from '@angular/router';
 
@@ -9,12 +9,10 @@ import { Product } from '../../product';
     selector: 'product-card',
     templateUrl: 'product-card.html'
 })
-export class ProductCardComponent implements OnInit {
+export class ProductCardComponent {
     @Input() product: Product;
 
     constructor(private router: Router) {}
-
-    ngOnInit() {}
 
      goToDetail(productId: number) {
         this.router.navigate(['/products', productId]);

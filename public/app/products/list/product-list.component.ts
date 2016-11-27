@@ -143,7 +143,11 @@ export class ProductListComponent implements OnInit {
 
     private mapCategories(products: Product[]): Category[] {
         return products.map(product => {
-            return { categoryId: product.categoryId, name: product.categoryName };
+            return { 
+                categoryId: product.categoryId, 
+                name: product.categoryName, 
+                description: product.categoryDescription 
+            };
         });
     }
 

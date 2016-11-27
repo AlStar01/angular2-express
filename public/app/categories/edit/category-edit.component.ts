@@ -16,8 +16,6 @@ export class CategoryEditComponent implements OnInit {
     category: Category;
     errorMessage: string;
 
-    @ViewChild('categoryEditForm') categoryEditForm: NgForm;
-
     constructor(
         private categoryService: CategoryService,
         private router: Router,
@@ -27,17 +25,13 @@ export class CategoryEditComponent implements OnInit {
         this._getCategory();
     }
 
-    hasError(formControl: FormControl): boolean {
-        return formControl.invalid && formControl.touched;
-    }
-
     goBack() {
         window.history.back();
     }
 
-    save() {
+    onSubmitted(category: Category) {
         this.categoryService
-            .updateCategory(this.category)
+            .updateCategory(category)
             .subscribe(
                 result => this.router.navigate(['/categories', this.category.categoryId]),
                 error => this.errorMessage = <any> error
