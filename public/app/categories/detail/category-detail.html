@@ -1,18 +1,17 @@
-<div class="container" *ngIf="category">
-    <div class="row">
+<div class="container">
+    <div class="row" *ngIf="category">
         <div class="col-sm-12">
-            <h1>Category: {{ category.name }}</h1>
-            <p class="lead">Description: {{ category.description }}</p>
-        </div>
-    </div>
+            <h1>Category: {{ category.name }} ({{ category.categoryId }})</h1>
+        
+            <br>
 
-    <br>
-    <br>
-
-    <div class="row">
-        <div class="col-sm-12">
             <button class="btn btn-warning" (click)="goToEditCategory()">Edit</button>
             <button class="btn btn-primary" (click)="goBack()">Back</button>
         </div>
     </div>
+
+    <br>
+    <br>
+
+    <router-outlet></router-outlet>
 </div>

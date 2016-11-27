@@ -15,6 +15,6 @@ export class CategoryCardComponent {
     constructor(private router: Router) { }
 
     goToDetail(categoryId: number) {
-        this.router.navigate([categoryId])
+        this.router.navigate(['category-details', categoryId]);
     }
 }

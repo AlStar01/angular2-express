@@ -2,23 +2,27 @@ import { ModuleWithProviders } from '@angular/core';
 
 import { Routes, RouterModule } from '@angular/router';
 
-import { CategoriesComponent } from './categories.component';
 import { CategoryListComponent } from './list/category-list.component';
 import { CategoryDetailComponent } from './detail/category-detail.component';
+import { CategoryOverviewComponent } from './overview/category-overview.component';
 import { CategoryProductsComponent } from './products/category-products.component';
 import { CategoryEditComponent } from './edit/category-edit.component';
 import { CategoryAddComponent } from './add/category-add.component';
-import { CategoryDashboardComponent } from './dashboard/category-dashboard.component';
 
 const routes: Routes = [
     { 
-        path: '', 
-        component: CategoriesComponent,
+        path: 'category-list', 
+        component: CategoryListComponent 
+    },
+    { 
+        path: 'category-details/:categoryId', 
+        component: CategoryDetailComponent,
         children: [
-            { path: ':categoryId/edit', component: CategoryEditComponent },
-            { path: ':categoryId', component: CategoryDetailComponent },
-            { path: '', component: CategoryListComponent },
-        ] 
+            { path: '', redirectTo: 'overview', pathMatch: 'full' },
+            { path: 'overview', component: CategoryOverviewComponent },
+            { path: 'edit', component: CategoryEditComponent },
+            { path: 'add', component: CategoryAddComponent }
+        ]
     }
 ];
 

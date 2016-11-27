@@ -3,9 +3,16 @@ DROP procedure IF EXISTS `GetAllCategories`;
 
 DELIMITER $$
 USE `sample`$$
-CREATE PROCEDURE `GetAllCategories` ()
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetAllCategories`()
 BEGIN
-	SELECT * FROM category;
+	SELECT
+		category_id as categoryId,
+        name,
+        description,
+        created_on as createdOn,
+        modified_on as modifiedOn
+    FROM 
+		category;
 END$$
 
 DELIMITER ;
