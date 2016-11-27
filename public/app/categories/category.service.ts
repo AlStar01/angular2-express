@@ -40,6 +40,12 @@ export class CategoryService {
                         .catch(this.handleError);
     }
 
+    addCategory(category: Category): Observable<number> {
+        return this.http.post(`${this.categoriesUrl}`, category)
+                   .map(res => res)
+                   .catch(this.handleError);
+    }
+
     private extractData(res: Response) {
         return res.json();
     }
