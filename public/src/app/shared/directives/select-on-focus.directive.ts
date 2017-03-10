@@ -1,10 +1,10 @@
-import { Directive } from '@angular/core';
+import { Directive, ElementRef, HostListener } from '@angular/core';
 
 @Directive({
   selector: '[appSelectOnFocus]'
 })
 export class SelectOnFocusDirective {
 
-  constructor() { }
+  constructor(private ref: ElementRef) { }
 
 }
