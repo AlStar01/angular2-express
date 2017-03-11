@@ -11,6 +11,8 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
+import { DashboardModule } from './dashboard/dashboard.module';
+
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
@@ -23,6 +25,7 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     SharedModule,
+    DashboardModule,
     AppRoutingModule
   ],
   providers: [],
