@@ -1,17 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import './rxjs-extensions';
+
 import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
 
-import './rxjs-extensions';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AboutComponent
+    AboutComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
