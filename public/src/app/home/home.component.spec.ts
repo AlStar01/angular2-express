@@ -22,4 +22,13 @@ describe('HomeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have a title "Welcome!"', async(() => {
+    expect(component.title).toEqual('Welcome!');
+  }));
+
+  it('should render title in h1 tag', async(() => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h1').textContent).toContain('Welcome!');
+  }));
 });
