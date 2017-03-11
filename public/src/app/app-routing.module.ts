@@ -8,7 +8,11 @@ import { NotFoundComponent } from './not-found/not-found.component';
 const appRoutes: Routes = [
   { path: '',       component: HomeComponent },
   { path: 'about',  component: AboutComponent  },
-  { path: '',       redirectTo: '/dashboard', pathMatch: 'full' },
+  {
+    path: 'dashboard',
+    loadChildren: 'app/dashboard/dashboard.module#DashboardModule',
+    data: { preload: true }
+  },
   { path: '**',     component: NotFoundComponent }
 ];
 
