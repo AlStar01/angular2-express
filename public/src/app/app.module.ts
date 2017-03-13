@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import './rxjs-extensions';
 
 import { SharedModule } from './shared/shared.module';
@@ -25,6 +27,7 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     SharedModule,
+    NgbModule.forRoot(),
     DashboardModule,
     AppRoutingModule
   ],
