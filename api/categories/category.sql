@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS `Category`;
 CREATE TABLE IF NOT EXISTS `Category` (
-    `category_id` INTEGER PRIMARY KEY,
+    `id` INTEGER PRIMARY KEY,
     `name` TEXT NOT NULL UNIQUE,
     `description` TEXT NOT NULL,
     `created_on` DATETIME DEFAULT CURRENT_TIMESTAMP,
