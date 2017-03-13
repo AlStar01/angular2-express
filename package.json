@@ -12,10 +12,12 @@
     "debug": "~2.6.2",
     "express": "~4.15.2",
     "jade": "~1.11.0",
+    "knex": "^0.12.7",
     "morgan": "~1.8.1",
-    "sequelize": "^3.30.2",
     "serve-favicon": "~2.4.1",
     "sqlite3": "^3.1.8"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "faker": "^4.1.0"
+  }
 }
