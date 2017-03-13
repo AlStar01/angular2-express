@@ -7,23 +7,26 @@ let knex = require('knex')({
   }
 });
 
-// let categories = [];
+let categories = [];
+let departments = [];
 
-// for (let i = 0; i < 100; i++) {
-//   let category = {
-//     name: faker.commerce.department(),
-//     description: faker.lorem.sentence(),
-//     created_on: knex.fn.now(),
-//     modified_on: knex.fn.now()
-//   };
+for (let i = 0; i < 250; i++) {
+  departments.push(faker.commerce.department());
+}
 
-//   categories.push(category);
-// }
+departments = [...new Set(departments)];
 
-// knex.returning('id').insert(categories).into('Category').then(function (ids) {
-//   console.log(ids);
-// });
+departments.forEach((department) => {
+  let category = {
+    name: department,
+    description: faker.lorem.sentence(),
+    created_on: knex.fn.now(),
+    modified_on: knex.fn.now()
+  };
 
-knex.select('*').from('Category').then(function(rows) {
-  console.log(rows);
+  categories.push(category);
+});
+
+knex.insert(categories).into('Category').then(function (id) {
+  console.log(id);
 });
