@@ -16,13 +16,15 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 
 import { AppRoutingModule } from './app-routing.module';
+import { NavigationComponent } from './layout/navigation/navigation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     AboutComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
