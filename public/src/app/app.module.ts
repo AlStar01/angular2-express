@@ -13,10 +13,12 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
+// Layout
+import { NavigationComponent } from './layout/navigation/navigation.component';
+
 import { DashboardModule } from './dashboard/dashboard.module';
 
 import { AppRoutingModule } from './app-routing.module';
-import { NavigationComponent } from './layout/navigation/navigation.component';
 
 @NgModule({
   declarations: [
