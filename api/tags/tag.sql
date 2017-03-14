@@ -1,7 +1,9 @@
-DROP TABLE IF EXISTS `tag`;
-CREATE TABLE IF NOT EXISTS `tag` (
-    `tag_id` BIGINT(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `name` VARCHAR(56) NOT NULL UNIQUE,
-    `created_on` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    `modified_on` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+DROP TABLE IF EXISTS `Tag`;
+
+CREATE TABLE `Tag` (
+    `id` integer not null primary key autoincrement, 
+    `name` varchar(55) not null, 
+    `created_on` datetime default CURRENT_TIMESTAMP, 
+    `modified_on` datetime default CURRENT_TIMESTAMP
 );
+CREATE UNIQUE INDEX `tag_name_unique` on `Tag` (`name`);

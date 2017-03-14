@@ -1,16 +1,17 @@
 DROP TABLE IF EXISTS `Product`;
-CREATE TABLE IF NOT EXISTS `Product` (
-	`product_id` BIGINT(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	`name` VARCHAR(200) NOT NULL,
-    `description` TEXT NOT NULL,
-	`model` VARCHAR(200) NOT NULL,
-    `price` NUMERIC (10,2) NOT NULL,
-	`category_id` BIGINT(20) NOT NULL,
-	`featured_image` VARCHAR(200) NOT NULL,
-    `created_on` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    `modified_on` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-	FOREIGN KEY fk_category (`category_id`)
-	REFERENCES `Category` (`category_id`)
-	ON UPDATE CASCADE
-	ON DELETE RESTRICT
+
+CREATE TABLE `Product` (
+	`id` integer not null primary key autoincrement, 
+	`name` varchar(55) not null, 
+	`description` varchar(255) not null, 
+	`price` float not null, 
+	`color` varchar(55) not null, 
+	`material` varchar(55) not null, 
+	`origin` varchar(255) not null, 
+	`manufacturer` varchar(255) not null, 
+	`featured_image` varchar(255) not null, 
+	`created_on` datetime default CURRENT_TIMESTAMP, 
+	`modified_on` datetime default CURRENT_TIMESTAMP, 
+	"category_id" integer not null,
+	foreign key(`category_id`) references `Category`(`id`)
 );

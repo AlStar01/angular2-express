@@ -1,8 +1,10 @@
 DROP TABLE IF EXISTS `Category`;
-CREATE TABLE IF NOT EXISTS `Category` (
-    `id` INTEGER PRIMARY KEY,
-    `name` TEXT NOT NULL UNIQUE,
-    `description` TEXT NOT NULL,
-    `created_on` DATETIME DEFAULT CURRENT_TIMESTAMP,
-    `modified_on` DATETIME DEFAULT CURRENT_TIMESTAMP
+
+CREATE TABLE `Category` (
+    `id` integer not null primary key autoincrement, 
+    `name` varchar(55) not null, 
+    `description` varchar(255) not null, 
+    `created_on` datetime default CURRENT_TIMESTAMP, 
+    `modified_on` datetime default CURRENT_TIMESTAMP
 );
+CREATE UNIQUE INDEX `category_name_unique` on `Category` (`name`);
