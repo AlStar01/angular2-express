@@ -1,8 +1,11 @@
-DROP TABLE IF EXISTS `product_tag`;
-CREATE TABLE IF NOT EXISTS `product_tag` (
-    `product_id` BIGINT(20) NOT NULL,
-    `tag_id` BIGINT(20) NOT NULL,
-    PRIMARY KEY (`product_id`, `tag_id`),
-    FOREIGN KEY fk_product (`product_id`) REFERENCES `product` (`product_id`) ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY fk_tag (`tag_id`) REFERENCES `tag` (`tag_id`) ON UPDATE CASCADE ON DELETE CASCADE
+DROP TABLE IF EXISTS `Product_Tag`;
+
+CREATE TABLE `Product_Tag` (
+    `product_id` integer not null, 
+    `tag_id` integer not null, 
+    foreign key(`product_id`) references `Product`(`id`), 
+    foreign key(`tag_id`) references `Tag`(`id`), 
+    primary key (`product_id`, `tag_id`)
 );
+
+CREATE UNIQUE INDEX `product_tag_product_id_tag_id_unique` on `Product_Tag` (`product_id`, `tag_id`);

@@ -11,7 +11,7 @@ let knex = require('knex')({
 let products = [];
 let categories = [];
 
-knex.pluck('id').from('category').orderBy('id').then(function (ids) {
+knex.pluck('id').from('Category').orderBy('id').then(function (ids) {
     categories = ids;
 
     for (let i = 0; i < 100; i++) {
