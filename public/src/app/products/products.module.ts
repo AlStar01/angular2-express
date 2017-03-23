@@ -9,6 +9,7 @@ import { ProductService } from "./product.service";
 
 import { ProductsComponent } from './products.component';
 import { ProductListComponent } from './product-list/product-list.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { ProductListComponent } from './product-list/product-list.component';
   ],
   declarations: [
     ProductsComponent, 
-    ProductListComponent
+    ProductListComponent, 
+    ProductDetailComponent
   ],
   providers: [ProductService]
 })
