@@ -5,17 +5,30 @@ class DashboardService {
         this.db = db;
 
         this.getProductsByCategory = this.getProductsByCategory.bind(this);
+        this.getProductsByColor = this.getProductsByColor.bind(this);
     }
 
     getProductsByCategory() {
         return db
-            .select(['category.id', 'category.name'])
+            .select(['category.id as categoryId', 'category.name'])
             .count('product.id as total')
             .from('product')
             .innerJoin('category', 'product.category_id', 'category.id')
             .groupBy('product.category_id')
             .orderBy('total', 'desc')
-            .orderBy('category.name');
+            .orderBy('category.name')
+            .limit(limit);
+    }
+
+    getProductsByColor() {
+        return db.
+            select('product.color')
+            .count('product.id as total')
+            .from('product')
+            .groupBy('product.color')
+            .orderBy('total', 'desc')
+            .orderBy('color')
+            .limit(limit);
     }
 }
 
