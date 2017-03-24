@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { SelectOnFocusDirective } from './directives/select-on-focus.directive';
 
 @NgModule({
@@ -14,6 +16,7 @@ import { SelectOnFocusDirective } from './directives/select-on-focus.directive';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    NgbModule,
     SelectOnFocusDirective
   ],
   declarations: [SelectOnFocusDirective]
