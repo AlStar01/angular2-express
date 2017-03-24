@@ -1,9 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-let productService = require('./product-service');
-let tagService = require('../tags/tag-service');
-
 let db = require('../../config/db');
 
 router.get('/', (req, res) => {
