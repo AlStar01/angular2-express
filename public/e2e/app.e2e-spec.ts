@@ -1,14 +1,14 @@
-import { PublicPage } from './app.po';
+import { TestAppPage } from './app.po';
 
-describe('public App', () => {
-  let page: PublicPage;
+describe('test-app App', () => {
+  let page: TestAppPage;
 
   beforeEach(() => {
-    page = new PublicPage();
+    page = new TestAppPage();
   });
 
   it('should display message saying app works', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getParagraphText()).toContain('Welcome!');
   });
 });
