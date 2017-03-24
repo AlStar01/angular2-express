@@ -1,8 +1,6 @@
 let express = require('express');
 let router = express.Router();
 
-let db = require('../../db/config');
-
 let productService = require('./product.service');
 
 router.get('/', (req, res) => {

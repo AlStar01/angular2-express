@@ -4,22 +4,8 @@ let router = express.Router();
 let dashboardService = require('./dashboard-service');
 
 router.get('/', (req, res) => {
-    const promises = [
-        dashboardService.getProductsByModel(),
-        dashboardService.getProductsByCategory(),
-        dashboardService.getProductsRecentActivity()
-    ];
-    
-    Promise.all(promises)
-        .then((data) => {
-            const response = {
-                productsByModel: data[0],
-                productsByCategory: data[1],
-                recentActivities: data[2]
-            }
-
-            res.send(response);
-        }).catch(err => res.status(500).send(err));
+    dashboardService.getProductsByCategory()
+        .then(results => res.status(200).send(results));
 });
 
 module.exports = router;
