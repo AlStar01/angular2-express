@@ -44,6 +44,14 @@ export class ProductListComponent implements OnInit {
 
   goToNextPage() {
     this.pagination.page += 1;
+    this.setRouteParams();
+  }
+
+  goToPreviousPage() {
+    if(this.pagination.page > 1) {
+      this.pagination.page -= 1;
+      this.setRouteParams();
+    }
   }
 
   private getProducts() {
