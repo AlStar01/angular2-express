@@ -9,11 +9,21 @@ class ProductService {
     }
 
     getProducts(page, limit) {
-        return this.db.select().from('product').limit(limit);
+        let offset = this.getOffset();
+        
+        return this.db
+            .select()
+            .from('product')
+            .limit(limit)
+            .offset(offset)
     }
 
     getProduct(id) {
         return this.db.select().from('product').where('id', id);
+    }
+
+    getOffset(page, limit) {
+        return page * limit;
     }
 }
 

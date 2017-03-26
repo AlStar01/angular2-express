@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { ProductService } from '../product.service';
 
@@ -15,9 +15,10 @@ export class ProductListComponent implements OnInit {
   products: Product[] = [];
 
   pagination: Pagination = {
-    page: 0,
+    page: 1,
     limit: 25
-  }
+  };
+  total: number = 0;
 
   constructor(
     private router: Router,
@@ -25,7 +26,10 @@ export class ProductListComponent implements OnInit {
     private productService: ProductService) { }
 
   ngOnInit() {
-    this.getProducts();
+    this.route.queryParams
+      .map((queryParams: Params) => queryParams)
+      .do(queryParams => this.pagination = <Pagination>queryParams)
+      .subscribe(queryParams => this.getProducts());
   }
 
   private getProducts() {
