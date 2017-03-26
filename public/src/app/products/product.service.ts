@@ -5,15 +5,16 @@ import { Http, Response } from '@angular/http';
 import { Observable } from "rxjs/Observable";
 
 import { Product } from './product';
+import { Pagination } from "app/products/pagination";
 
 @Injectable()
 export class ProductService {
-  private productsUrl: 'api/products';
+  private productsUrl = 'api/products';
 
   constructor(private http: Http) { }
 
-  getProducts(): Observable<Product[]> {
-    return this.http.get(this.productsUrl)
+  getProducts(pagination: Pagination): Observable<Product[]> {
+    return this.http.get(`${this.productsUrl}?page=${pagination.page}&limit=${pagination.limit}`)
       .map((res: Response) => res.json())
       .catch(this.handleError);
   }

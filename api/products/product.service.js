@@ -8,8 +8,8 @@ class ProductService {
         this.getProduct = this.getProduct.bind(this);
     }
 
-    getProducts() {
-        return this.db.select().from('product');
+    getProducts(page, limit) {
+        return this.db.select().from('product').limit(limit);
     }
 
     getProduct(id) {
