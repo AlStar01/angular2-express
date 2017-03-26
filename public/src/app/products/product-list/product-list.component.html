@@ -1,5 +1,15 @@
 <h1>Products</h1>
 
 <ul>
-  <li *ngFor="let product of products">{{product.name}}</li>
+  <app-product-card *ngFor="let product of products" [product]="product"></app-product-card>
 </ul>
+
+<br>
+
+<div class="row align-items-center justify-content-end">
+  <div class="col"></div>
+  <div class="col-sm-4">
+    <button type="button" class="btn btn-secondary">Previous</button>
+    <button type="button" class="btn btn-secondary" (click)="goToNextPage()">Next</button>
+  </div>
+</div>

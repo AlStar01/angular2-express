@@ -10,6 +10,7 @@ import { ProductService } from "./product.service";
 import { ProductsComponent } from './products.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ProductCardComponent } from './shared/product-card/product-card.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
   declarations: [
     ProductsComponent, 
     ProductListComponent, 
-    ProductDetailComponent
+    ProductDetailComponent, 
+    ProductCardComponent
   ],
   providers: [ProductService]
 })

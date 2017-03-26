@@ -9,12 +9,12 @@ class ProductService {
     }
 
     getProducts(page, limit) {
-        let offset = this.getOffset();
+        let offset = this.getOffset(page, limit);
         
         return this.db
             .select()
             .from('product')
-            .limit(limit)
+            .limit(parseInt(limit))
             .offset(offset)
     }
 

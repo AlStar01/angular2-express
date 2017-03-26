@@ -14,10 +14,7 @@ import { Pagination } from "app/products/pagination";
 export class ProductListComponent implements OnInit {
   products: Product[] = [];
 
-  pagination: Pagination = {
-    page: 1,
-    limit: 25
-  };
+  pagination: Pagination;
   total: number = 0;
 
   constructor(
@@ -28,8 +25,25 @@ export class ProductListComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams
       .map((queryParams: Params) => queryParams)
-      .do(queryParams => this.pagination = <Pagination>queryParams)
+      .do(queryParams => {
+        if(queryParams['page'] && queryParams['limit']) {
+          this.pagination = {
+            page: +queryParams['page'],
+            limit: +queryParams['limit']
+          };
+        }
+        else {
+          this.pagination = {
+            page: 1,
+            limit: 25
+          }
+        }
+      })
       .subscribe(queryParams => this.getProducts());
+  }
+
+  goToNextPage() {
+    this.pagination.page += 1;
   }
 
   private getProducts() {

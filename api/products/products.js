@@ -4,7 +4,7 @@ let router = express.Router();
 let productService = require('./product.service');
 
 router.get('/', (req, res) => {
-    productService.getProducts(req.query.page, req.query.limit)
+    productService.getProducts(+req.query.page, +req.query.limit)
         .then(products => res.status(200).send(products))
         .catch(err => res.status(500).send(err));
 });
