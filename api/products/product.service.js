@@ -19,7 +19,7 @@ class ProductService {
     }
 
     getProduct(id) {
-        return this.db.select().from('product').where('id', id);
+        return this.db.select().from('product').where('id', id).first();
     }
 
     getOffset(page, limit) {

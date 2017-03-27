@@ -54,6 +54,10 @@ export class ProductListComponent implements OnInit {
     }
   }
 
+  isPreviousDisabled() {
+    return this.pagination.page === 1;
+  }
+
   private getProducts() {
     this.productService.getProducts(this.pagination)
       .subscribe(products => {
