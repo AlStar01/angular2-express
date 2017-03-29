@@ -1,3 +1,4 @@
+let knex = require('knex');
 let db = require('../../db/config');
 
 class ProductService {
@@ -8,19 +9,22 @@ class ProductService {
         this.getProduct = this.getProduct.bind(this);
     }
 
-    getProducts(page, limit) {
+    getProducts(page = 1, limit = 25) {
         let offset = this.getOffset(page, limit);
-        
+
+        let total = knex.raw('select count(*) from ??', ['product']).wrap('(', ') total');
+
         return this.db
-            .select()
+            .select(['*', total])
             .from('product')
             .limit(parseInt(limit))
-            .offset(offset)
+            .offset(offset);
     }
 
     getProduct(id) {
         return this.db.select().from('product').where('id', id);
     }
+
 
     getOffset(page, limit) {
         return page * limit;
