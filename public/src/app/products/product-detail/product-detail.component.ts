@@ -32,4 +32,8 @@ export class ProductDetailComponent implements OnInit {
     this.productService.getProduct(this.id)
       .subscribe(product => this.product = product);
   }
+
+  goBack() {
+    this.location.back();
+  }
 }

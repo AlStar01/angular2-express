@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col">
       <h1>{{product.name}}</h1>
+      <p class="lead">{{product.description}}</p>
     </div>
   </div>
 
@@ -9,7 +10,16 @@
 
   <div class="row">
     <div class="col">
-      
+      <div><strong>Price:</strong> {{product.price | currency : USD : true : '1.2-2'}}</div>
     </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class="col-sm-auto">
+      <button class="btn btn-default" (click)="goBack()">Back</button>
+    </div>
+    <div class="col"></div>
   </div>
 </div>
