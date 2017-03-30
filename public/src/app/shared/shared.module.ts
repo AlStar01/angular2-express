@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { SelectOnFocusDirective } from './directives/select-on-focus.directive';
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 @NgModule({
   imports: [
@@ -17,8 +18,12 @@ import { SelectOnFocusDirective } from './directives/select-on-focus.directive';
     ReactiveFormsModule,
     HttpModule,
     NgbModule,
-    SelectOnFocusDirective
+    SelectOnFocusDirective,
+    TruncatePipe
   ],
-  declarations: [SelectOnFocusDirective]
+  declarations: [
+    SelectOnFocusDirective, 
+    TruncatePipe
+  ]
 })
 export class SharedModule { }

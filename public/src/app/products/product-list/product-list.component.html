@@ -1,15 +1,31 @@
-<h1>Products</h1>
-
-<ul>
-  <app-product-card *ngFor="let product of products" [product]="product"></app-product-card>
-</ul>
+<div class="row">
+  <div class="col">
+    <h1>Products</h1>
+  </div>
+</div>
 
 <br>
 
 <div class="row align-items-center justify-content-end">
   <div class="col"></div>
-  <div class="col-sm-4">
-    <button type="button" class="btn btn-secondary" (click)="goToPreviousPage()">Previous</button>
+  <div class="col-sm-auto">
+    <button type="button" class="btn btn-secondary" (click)="goToPreviousPage()" [disabled]="isPreviousDisabled()">Previous</button>
+    <button type="button" class="btn btn-secondary" (click)="goToNextPage()">Next</button>
+  </div>
+</div>
+
+<br>
+
+<div class="row">
+  <app-product-card class="col-sm-6 col-md-3" *ngFor="let product of products" [product]="product"></app-product-card>
+</div>
+
+<br>
+
+<div class="row align-items-center justify-content-end">
+  <div class="col"></div>
+  <div class="col-sm-auto">
+    <button type="button" class="btn btn-secondary" (click)="goToPreviousPage()" [disabled]="isPreviousDisabled()">Previous</button>
     <button type="button" class="btn btn-secondary" (click)="goToNextPage()">Next</button>
   </div>
 </div>
