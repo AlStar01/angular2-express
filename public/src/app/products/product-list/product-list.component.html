@@ -10,7 +10,7 @@
   <div class="col"></div>
   <div class="col-sm-auto">
     <button type="button" class="btn btn-secondary" (click)="goToPreviousPage()" [disabled]="isPreviousDisabled()">Previous</button>
-    <button type="button" class="btn btn-secondary" (click)="goToNextPage()">Next</button>
+    <button type="button" class="btn btn-secondary" (click)="goToNextPage()" [disabled]="isNextDisabled()">Next</button>
   </div>
 </div>
 
@@ -26,6 +26,6 @@
   <div class="col"></div>
   <div class="col-sm-auto">
     <button type="button" class="btn btn-secondary" (click)="goToPreviousPage()" [disabled]="isPreviousDisabled()">Previous</button>
-    <button type="button" class="btn btn-secondary" (click)="goToNextPage()">Next</button>
+    <button type="button" class="btn btn-secondary" (click)="goToNextPage()" [disabled]="isNextDisabled()">Next</button>
   </div>
 </div>

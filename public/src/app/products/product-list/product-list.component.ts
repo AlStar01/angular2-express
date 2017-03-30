@@ -58,6 +58,16 @@ export class ProductListComponent implements OnInit {
     return this.pagination.page === 1;
   }
 
+  isNextDisabled() {
+    if(this.products && this.products.length) {
+      this.total = this.products[0].total;
+
+      return ((this.pagination.page +1) * this.pagination.limit) >= this.total;
+    }
+
+    return true;
+  }
+
   private getProducts() {
     this.productService.getProducts(this.pagination)
       .subscribe(products => {

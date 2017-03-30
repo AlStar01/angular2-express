@@ -1,4 +1,4 @@
-export class Product {
+export interface Product {
     id: number;
     name: string;
     description: string;
@@ -11,4 +11,5 @@ export class Product {
     created_on: Date;
     modified_on: Date;
     category_id: number;
+    total: number;
 }
