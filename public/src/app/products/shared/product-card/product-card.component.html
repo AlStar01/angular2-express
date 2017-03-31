@@ -5,12 +5,9 @@
     <div class="card-block">
         <h4 class="card-title"><a [routerLink]="['/products', product.id]">{{product.name}}</a></h4>
         <p class="card-text"><strong>By:</strong> {{product.manufacturer}}</p>
+        <p class="card-text"><strong>{{product.price | currency:'USD':true:'1.2-2'}}</strong></p>
     </div>
     <ul class="list-group list-group-flush">
-        <li class="list-group-item">{{product.price | currency:'USD':true:'1.2-2'}}</li>
         <li class="list-group-item">{{product.color}} <div class="card-swatch" [ngStyle]="{'background': colorHex}"></div></li>
     </ul>
-    <div class="card-block text-right">
-        <a [routerLink]="['/products', product.id]" class="card-link pull-right">Details</a>
-    </div>
 </div>
