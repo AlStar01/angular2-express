@@ -5,3 +5,19 @@
 .card img {
     height: 180px;
 }
+
+.card img:hover {
+    cursor: pointer;
+}
+
+.card-title {
+    min-height: 50px;
+    font-size: 1.3rem;
+}
+
+.card-swatch {
+    margin-left: 5px;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+}

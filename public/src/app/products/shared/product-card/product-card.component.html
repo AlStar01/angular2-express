@@ -1,13 +1,16 @@
-<div class="card" (click)="goToProduct()">
-    <img class="card-img-top" src="{{product.featured_image}}" alt="Card image cap">
+<div class="card">
+    <a [routerLink]="['/products', product.id]">
+        <img class="card-img-top img-fluid" src="{{product.featured_image}}" alt="Card image cap">
+    </a>
     <div class="card-block">
-        <h4 class="card-title">{{product.name | truncate : 14}}</h4>
-        <p class="card-text">{{product.description | truncate : 20}}</p>
+        <h4 class="card-title"><a [routerLink]="['/products', product.id]">{{product.name}}</a></h4>
+        <p class="card-text"><strong>By:</strong> {{product.manufacturer}}</p>
     </div>
     <ul class="list-group list-group-flush">
         <li class="list-group-item">{{product.price | currency:'USD':true:'1.2-2'}}</li>
+        <li class="list-group-item">{{product.color}} <div class="card-swatch" [ngStyle]="{'background': colorHex}"></div></li>
     </ul>
     <div class="card-block text-right">
-        <a [routerLink]="['/products', product.id]" class="card-link">Details</a>
+        <a [routerLink]="['/products', product.id]" class="card-link pull-right">Details</a>
     </div>
 </div>

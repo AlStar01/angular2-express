@@ -1,19 +1,17 @@
 <div *ngIf="product">
   <div class="row">
-    <div class="col">
+    <div class="col-4">
+      <img class="img-fluid" src="{{product.featured_image}}" alt="{{product.name}}">
+    </div>
+    <div class="col-8">
       <h1>{{product.name}}</h1>
       <p class="lead">{{product.description}}</p>
+      <br>
+      <h3><strong>Price:</strong> {{product.price | currency:'USD':true:'1.2-2'}}</h3>
     </div>
   </div>
 
   <br>
-
-  <div class="row">
-    <div class="col">
-      <div><strong>Price:</strong> {{product.price | currency : USD : true : '1.2-2'}}</div>
-    </div>
-  </div>
-
   <br>
 
   <div class="row">

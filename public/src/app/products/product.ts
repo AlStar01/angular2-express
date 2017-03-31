@@ -11,5 +11,6 @@ export interface Product {
     created_on: Date;
     modified_on: Date;
     category_id: number;
-    total: number;
+    category_name?: string;
+    total?: number;
 }
