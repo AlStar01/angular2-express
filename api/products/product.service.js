@@ -12,12 +12,14 @@ class ProductService {
         let offset = this.getOffset(page, limit);
 
         let total = db.raw('select count(*) from ??', ['product']).wrap('(', ') total');
+        let category = db.raw('select name from ?? where product.category_id', ['category'])
 
         return this.db
-            .select(['*', total])
+            .select(['product.*', 'category.name as category',total])
             .from('product')
-            .limit(parseInt(limit))
-            .offset(offset);
+            .innerJoin('category', 'product.category_id', 'category.id')
+            .offset(offset)
+            .limit(limit);
     }
 
     getProduct(id) {
@@ -26,7 +28,7 @@ class ProductService {
 
 
     getOffset(page, limit) {
-        return page * limit;
+        return (page - 1) * limit;
     }
 }
 
