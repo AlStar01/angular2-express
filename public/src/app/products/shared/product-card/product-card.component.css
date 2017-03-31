@@ -18,7 +18,8 @@
     font-size: 1.1rem;
 }
 
-.card-swatch {
+.color-swatch {
+    display: inline-block;
     margin-left: auto;
     height: 25px;
     width: 25px;

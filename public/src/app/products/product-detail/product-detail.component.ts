@@ -6,6 +6,8 @@ import { ProductService } from '../product.service';
 
 import { Product } from '../product';
 
+import * as toHex from 'colornames';
+
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
@@ -14,6 +16,7 @@ import { Product } from '../product';
 export class ProductDetailComponent implements OnInit {
   private id: number;
   product: Product;
+  colorHex: string;
 
   constructor(
     private router: Router,
@@ -30,10 +33,18 @@ export class ProductDetailComponent implements OnInit {
 
   getProduct() {
     this.productService.getProduct(this.id)
-      .subscribe(product => this.product = product);
+      .subscribe(product => {
+        this.product = product;
+        this.setColorHex();
+      });
   }
 
   goBack() {
     this.location.back();
+  }
+
+  private setColorHex() {
+    let colorName = this.product.color.replace(/\s/gi, '');
+    this.colorHex = toHex(colorName);
   }
 }

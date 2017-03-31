@@ -17,13 +17,15 @@ export class ProductCardComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {
-    let colorName = this.product.color.replace(/\s/g, '');
-    this.colorHex = toHex(colorName);
+    this.setColorHex();
   }
 
   goToProduct() {
     this.router.navigate(['/products', this.product.id]);
   }
 
-
+  private setColorHex() {
+    let colorName = this.product.color.replace(/\s/gi, '');
+    this.colorHex = toHex(colorName);
+  }
 }

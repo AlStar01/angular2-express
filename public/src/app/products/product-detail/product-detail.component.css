@@ -1,0 +1,11 @@
+.list-group-item .value {
+    margin-left: auto;
+}
+
+.color-swatch {
+    display: inline-block;
+    margin-left: auto;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+}

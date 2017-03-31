@@ -6,8 +6,26 @@
     <div class="col-8">
       <h1>{{product.name}}</h1>
       <p class="lead">{{product.description}}</p>
-      <br>
-      <h3><strong>Price:</strong> {{product.price | currency:'USD':true:'1.2-2'}}</h3>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <strong>Price:</strong> <span class="value">{{product.price | currency:'USD':true:'1.2-2'}}</span>
+        </li>
+        <li class="list-group-item">
+          <strong>Category:</strong> <span class="value">{{product.category}}</span>
+        </li>
+        <li class="list-group-item">
+          <strong>Manufacturer:</strong> <span class="value">{{product.manufacturer}}</span>
+        </li>
+        <li class="list-group-item">
+          <strong>Origin:</strong> <span class="value">{{product.origin}}</span>
+        </li>
+        <li class="list-group-item">
+          <strong>Color:</strong>  <span class="value color-swatch" [ngStyle]="{'background': colorHex}"></span>
+        </li>
+        <li class="list-group-item">
+          <strong>Material:</strong> <span class="value">{{product.material}}</span>
+        </li>
+      </ul>
     </div>
   </div>
 

@@ -8,6 +8,6 @@
         <p class="card-text"><strong>{{product.price | currency:'USD':true:'1.2-2'}}</strong></p>
     </div>
     <ul class="list-group list-group-flush">
-        <li class="list-group-item">{{product.color}} <div class="card-swatch" [ngStyle]="{'background': colorHex}"></div></li>
+        <li class="list-group-item">{{product.color}} <div class="color-swatch" [ngStyle]="{'background': colorHex}"></div></li>
     </ul>
 </div>
