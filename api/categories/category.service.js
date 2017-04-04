@@ -7,11 +7,9 @@ class CategoryService {
         this.getCategories = this.getCategories.bind(this);
     }
 
-    getCategories() {
-        let total = db.raw('select count(*) from ??', ['category']).wrap('(', ') total');
-        
+    getCategories() {        
         return db
-            .select(['*', total])
+            .select()
             .from('category')
             .orderBy('name');
     }
