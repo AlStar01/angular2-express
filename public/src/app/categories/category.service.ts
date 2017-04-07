@@ -16,6 +16,12 @@ export class CategoryService {
       .map((res: Response) => res.json())
       .catch(this.handleError);
   }
+  
+  getCategory(id: number): Observable<Category> {
+    return this.http.get(`${this.categoriesUrl}/${id}`)
+      .map((res: Response) => res.json())
+      .catch(this.handleError);
+  }
 
   ///////////////////////////////////////////////
 

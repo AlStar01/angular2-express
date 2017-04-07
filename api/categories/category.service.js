@@ -13,6 +13,14 @@ class CategoryService {
             .from('category')
             .orderBy('name');
     }
+
+    getCategory(id) {
+        return db
+            .select()
+            .from('category')
+            .where('id', id)
+            .first()
+    }
 }
 
 module.exports = new CategoryService();

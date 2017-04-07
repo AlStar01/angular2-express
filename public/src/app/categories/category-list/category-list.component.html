@@ -1,5 +1,5 @@
 <h1>Categories</h1>
 
 <ul>
-  <li *ngFor="let category of categories">{{category.name}}</li>
+  <li *ngFor="let category of categories"><a [routerLink]="['/categories', category.id]">{{category.name}}</a></li>
 </ul>
