@@ -6,9 +6,9 @@ import { CategoryListComponent } from './category-list/category-list.component';
 import { CategoryDetailComponent } from './category-detail/category-detail.component';
 import { CategoryRoutingModule } from "app/categories/category-routing.module";
 import { CategoriesComponent } from "app/categories/categories.component";
+import { CategoryFormComponent } from './shared/category-form/category-form.component';
 
 import { CategoryService } from "app/categories/category.service";
-import { CategoryFormComponent } from './shared/category-form/category-form.component';
 
 @NgModule({
   imports: [
@@ -18,7 +18,8 @@ import { CategoryFormComponent } from './shared/category-form/category-form.comp
   declarations: [
     CategoriesComponent,
     CategoryListComponent, 
-    CategoryDetailComponent, CategoryFormComponent
+    CategoryDetailComponent, 
+    CategoryFormComponent
   ],
   providers: [CategoryService]
 })
