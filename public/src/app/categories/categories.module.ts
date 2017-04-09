@@ -8,6 +8,7 @@ import { CategoryRoutingModule } from "app/categories/category-routing.module";
 import { CategoriesComponent } from "app/categories/categories.component";
 
 import { CategoryService } from "app/categories/category.service";
+import { CategoryFormComponent } from './shared/category-form/category-form.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import { CategoryService } from "app/categories/category.service";
   declarations: [
     CategoriesComponent,
     CategoryListComponent, 
-    CategoryDetailComponent
+    CategoryDetailComponent, CategoryFormComponent
   ],
   providers: [CategoryService]
 })

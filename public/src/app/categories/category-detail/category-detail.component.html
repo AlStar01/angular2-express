@@ -1,3 +1,6 @@
-<p>
-  category-detail works!
-</p>
+<div class="row" *ngIf="category">
+  <div class="col-sm-12">
+    <h1>{{category.name}}</h1>
+    <p class="lead">{{category.description}}</p>
+  </div>
+</div>

@@ -28,6 +28,7 @@ export class CategoryDetailComponent implements OnInit {
   /////////////////////////////////
 
   private getCategory() {
-    this.categoryService.getCategory(this.categoryId);
+    this.categoryService.getCategory(this.categoryId)
+      .subscribe(category => this.category = category);
   }
 }
