@@ -25,6 +25,9 @@ export class CategoryDetailComponent implements OnInit {
       .subscribe(id => this.getCategory());
   }
 
+  deleteCategory() {
+  }
+
   /////////////////////////////////
 
   private getCategory() {
