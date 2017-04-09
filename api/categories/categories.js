@@ -15,4 +15,10 @@ router.get('/:id', (req, res) => {
         .catch(err => res.status(500).send('Error retrieving category by id'))
 });
 
+router.post('/', (req, res) => {
+    categoryService.addCategory(req.body)
+        .then(categoryId => res.status(200).send(categoryId))
+        .catch(err => res.status(500).send('Failed to add new product'));
+});
+
 module.exports = router;

@@ -21,6 +21,12 @@ class CategoryService {
             .where('id', id)
             .first()
     }
+
+    addCategory(category) {
+        return db
+            .returning('id')
+            .insert(category);
+    }
 }
 
 module.exports = new CategoryService();
