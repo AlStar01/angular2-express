@@ -25,7 +25,8 @@ export class CategoryDetailComponent implements OnInit {
       .subscribe(id => this.getCategory());
   }
 
-  deleteCategory() {
+  goToCategories() {
+    this.router.navigate(['categories']);
   }
 
   /////////////////////////////////
