@@ -7,6 +7,7 @@ import { CategoryDetailComponent } from './category-detail/category-detail.compo
 import { CategoryRoutingModule } from "app/categories/category-routing.module";
 import { CategoriesComponent } from "app/categories/categories.component";
 import { CategoryFormComponent } from './shared/category-form/category-form.component';
+import { CategoryAddComponent } from './shared/category-add/category-add.component';
 
 import { CategoryService } from "app/categories/category.service";
 
@@ -19,7 +20,8 @@ import { CategoryService } from "app/categories/category.service";
     CategoriesComponent,
     CategoryListComponent, 
     CategoryDetailComponent, 
-    CategoryFormComponent
+    CategoryFormComponent, 
+    CategoryAddComponent
   ],
   providers: [CategoryService]
 })
