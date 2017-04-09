@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
-import { CategoryService } from "app/categories/category.service";
+import { CategoryService } from "../category.service";
 import { Category } from '../category';
+import { CategoryAddComponent } from "../shared/category-add/category-add.component";
 
 @Component({
   selector: 'app-category-list',
@@ -23,11 +24,7 @@ export class CategoryListComponent implements OnInit {
   }
 
   openModal(content) {
-    this.modalService.open(content).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+    const modalRef = this.modalService.open(CategoryAddComponent);
   }
 
   private getDismissReason(reason: any): string {

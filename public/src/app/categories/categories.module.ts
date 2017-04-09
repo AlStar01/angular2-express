@@ -19,10 +19,11 @@ import { CategoryService } from "app/categories/category.service";
   declarations: [
     CategoriesComponent,
     CategoryListComponent, 
-    CategoryDetailComponent, 
-    CategoryFormComponent, 
-    CategoryAddComponent
+    CategoryDetailComponent,
+    CategoryAddComponent, 
+    CategoryFormComponent
   ],
-  providers: [CategoryService]
+  providers: [CategoryService],
+  entryComponents: [CategoryAddComponent]
 })
 export class CategoriesModule { }
