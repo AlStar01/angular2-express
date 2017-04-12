@@ -8,7 +8,10 @@
     <input type="text" formControlName="description" class="form-control" placeholder="Enter description">
   </div>
   <button type="button" class="btn btn-warning" (click)="cancel()">Cancel</button>
-  <button type="submit" class="btn btn-primary" (click)="submit()" [disabled]="!canSubmit()">Submit</button>
+  <button type="submit" class="btn btn-primary" [disabled]="!canSubmit()">Submit</button>
+
+  <br>
 
   <div>{{categoryForm.status | json}}</div>
+  <div>{{categoryForm.value | json}}</div>
 </form>

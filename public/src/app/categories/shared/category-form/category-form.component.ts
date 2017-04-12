@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Category } from "app/categories/category";
@@ -10,6 +10,10 @@ import { Category } from "app/categories/category";
 })
 export class CategoryFormComponent implements OnInit {
   @Input() category: Category;
+
+  @Output() cancel: EventEmitter<any> = new EventEmitter();
+  @Output() submit: EventEmitter<Category> = new EventEmitter();
+
   categoryForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
@@ -31,6 +35,7 @@ export class CategoryFormComponent implements OnInit {
 
   onSubmit() {
     const formValue = this.categoryForm.value;
+    this.submit.emit(formValue);
   }
 
   private createForm() {
