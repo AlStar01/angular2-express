@@ -1,11 +1,11 @@
 <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label for="name">Name</label>
-    <input type="text" formControlName="name">
+    <input type="text" formControlName="name" class="form-control" placeholder="Enter name">
   </div>
   <div class="form-group">
     <label for="description">Description</label>
-    <input type="text" formControlName="description">
+    <input type="text" formControlName="description" class="form-control" placeholder="Enter description">
   </div>
   <button type="button" class="btn btn-warning" (click)="cancel()">Cancel</button>
   <button type="submit" class="btn btn-primary" (click)="submit()" [disabled]="!canSubmit()">Submit</button>

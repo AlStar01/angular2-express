@@ -17,10 +17,12 @@ export class CategoryFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.categoryForm.setValue({
-      name: this.category.name || '',
-      description: this.category.description || ''
-    });
+    if(this.category) {
+      this.categoryForm.setValue({
+        name: this.category.name || '',
+        description: this.category.description || ''
+      });
+    }
   }
 
   canSubmit() {
