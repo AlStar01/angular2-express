@@ -7,7 +7,7 @@
     <label for="description">Description</label>
     <input type="text" formControlName="description" class="form-control" placeholder="Enter description">
   </div>
-  <button type="button" class="btn btn-warning" (click)="cancel()">Cancel</button>
+  <button type="button" class="btn btn-warning" (click)="onCancel()">Cancel</button>
   <button type="submit" class="btn btn-primary" [disabled]="!canSubmit()">Submit</button>
 
   <br>

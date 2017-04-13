@@ -33,6 +33,10 @@ export class CategoryFormComponent implements OnInit {
     return this.categoryForm.status === 'VALID';
   }
 
+  onCancel() {
+    this.cancel.emit("Cancelled adding new category");
+  }
+
   onSubmit() {
     const formValue = this.categoryForm.value;
     this.submit.emit(formValue);
