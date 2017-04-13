@@ -24,7 +24,7 @@ class CategoryService {
 
     addCategory(category) {
         return db('category')
-            .returning('id')
+            .returning('*')
             .insert(category);
     }
 }

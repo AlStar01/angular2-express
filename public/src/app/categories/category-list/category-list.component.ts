@@ -24,7 +24,10 @@ export class CategoryListComponent implements OnInit {
   }
 
   openModal(content) {
-    const modalRef = this.modalService.open(CategoryAddComponent);
+    const modalRef = 
+      this.modalService.open(CategoryAddComponent).result
+        .then(category => this.categories = [...this.categories, category])
+        .catch(reason => console.log(reason));
   }
 
   private getDismissReason(reason: any): string {

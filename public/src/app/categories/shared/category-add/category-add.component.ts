@@ -11,14 +11,16 @@ import { CategoryService } from "app/categories/category.service";
   styleUrls: ['./category-add.component.css']
 })
 export class CategoryAddComponent {
-  constructor(private activeModal: NgbActiveModal) { }
+  constructor(
+    private categoryService: CategoryService,
+    private activeModal: NgbActiveModal) { }
 
   onSubmit(category: Category) {
-    console.log(category);
+    this.categoryService.addCategory(category)
+      .subscribe(category => this.activeModal.close(category))
   }
 
-  onCancel(message: string) {
-    this.activeModal.dismiss(message);
-    console.log(message);
+  onCancel(reason: string) {
+    this.activeModal.dismiss(reason);
   }
 }

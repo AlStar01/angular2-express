@@ -17,7 +17,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
     categoryService.addCategory(req.body)
-        .then(categoryId => res.status(200).send(categoryId))
+        .then(category => res.status(200).send(category))
         .catch(err => res.status(500).send('Failed to add new product'));
 });
 
