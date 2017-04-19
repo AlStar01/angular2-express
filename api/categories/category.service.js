@@ -8,14 +8,14 @@ class CategoryService {
     }
 
     getCategories() {        
-        return db
+        return this.db
             .select()
             .from('category')
             .orderBy('name');
     }
 
     getCategory(id) {
-        return db
+        return this.db
             .select()
             .from('category')
             .where('id', id)
@@ -23,7 +23,7 @@ class CategoryService {
     }
 
     addCategory(category) {
-        return db('category')
+        return this.db('category')
             .returning('*')
             .insert(category);
     }
