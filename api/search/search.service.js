@@ -9,10 +9,12 @@ class SearchService {
 
     search(term) {
         return this.db
-            .select()
+            .select(['id', 'name'])
             .from('product')
             .where('name', 'like', `%${term}%`)
-            .orWhere('description', 'like', `%${term}%`);
+            .orWhere('description', 'like', `%${term}%`)
+            .orderBy('name')
+            .limit(10);
     }
 }
 

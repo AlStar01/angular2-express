@@ -10,6 +10,8 @@ export class SearchService {
   constructor(private http: Http) { }
 
   search(term: string): Observable<Product[]> {
+    if(!term.length) return Observable.of([]);
+    
     let params = new URLSearchParams();
     params.set('search', term);
 

@@ -11,7 +11,10 @@ import { SearchService } from "app/core/search/search.service";
 
 
 @NgModule({
-    imports: [CommonModule, HttpModule],
+    imports: [
+      CommonModule, 
+      HttpModule
+    ],
     exports: [LayoutModule],
     providers: [SearchService]
 })
