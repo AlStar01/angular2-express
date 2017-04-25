@@ -5,6 +5,8 @@ import { ProductsComponent } from "./products.component";
 
 import { ProductListComponent } from "./product-list/product-list.component";
 import { ProductDetailComponent } from "./product-detail/product-detail.component";
+import { ProductAddComponent } from "app/products/product-add/product-add.component";
+import { ProductEditComponent } from "app/products/product-edit/product-edit.component";
 
 const productRoutes: Routes = [
     {
@@ -12,7 +14,8 @@ const productRoutes: Routes = [
         component: ProductsComponent,
         children: [
             { path: '', component: ProductListComponent },
-            { path: ':id', component: ProductDetailComponent }
+            { path: ':id', component: ProductDetailComponent },
+            { path: ':id/edit', component: ProductEditComponent }
         ]
     }
 ];
