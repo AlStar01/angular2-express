@@ -11,6 +11,7 @@ import { ProductsComponent } from './products.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ProductCardComponent } from './shared/product-card/product-card.component';
+import { ProductFormComponent } from './shared/product-form/product-form.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { ProductCardComponent } from './shared/product-card/product-card.compone
     ProductsComponent, 
     ProductListComponent, 
     ProductDetailComponent, 
-    ProductCardComponent
+    ProductCardComponent, 
+    ProductFormComponent
   ],
   providers: [ProductService]
 })
