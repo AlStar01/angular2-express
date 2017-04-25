@@ -13,6 +13,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { ProductCardComponent } from './shared/product-card/product-card.component';
 import { ProductFormComponent } from './shared/product-form/product-form.component';
 import { ProductAddComponent } from './product-add/product-add.component';
+import { ProductEditComponent } from './product-edit/product-edit.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,7 @@ import { ProductAddComponent } from './product-add/product-add.component';
     ProductListComponent, 
     ProductDetailComponent, 
     ProductCardComponent, 
-    ProductFormComponent, ProductAddComponent
+    ProductFormComponent, ProductAddComponent, ProductEditComponent
   ],
   providers: [ProductService]
 })
