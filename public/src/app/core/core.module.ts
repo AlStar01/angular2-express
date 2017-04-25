@@ -2,14 +2,18 @@ import {
   ModuleWithProviders, NgModule,
   Optional, SkipSelf }       from '@angular/core';
 
+  import { HttpModule } from "@angular/http";
+
 import { CommonModule } from '@angular/common';
 
 import { LayoutModule } from "./layout/layout.module";
+import { SearchService } from "app/core/search/search.service";
+
 
 @NgModule({
-    imports: [CommonModule],
+    imports: [CommonModule, HttpModule],
     exports: [LayoutModule],
-    providers: []
+    providers: [SearchService]
 })
 export class CoreModule {
     constructor (@Optional() @SkipSelf() parentModule: CoreModule) {

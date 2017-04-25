@@ -10,6 +10,7 @@ const appRoutes: Routes = [
   { path: 'about',  component: AboutComponent  },
   { path: 'dashboard', loadChildren: 'app/dashboard/dashboard.module#DashboardModule' },
   { path: 'products', loadChildren: 'app/products/products.module#ProductsModule' },
+  { path: 'categories', loadChildren: 'app/categories/categories.module#CategoriesModule' },
   { path: '**', pathMatch: 'full', component: NotFoundComponent }
 ];
 

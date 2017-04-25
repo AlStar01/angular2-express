@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, NavigationStart } from "@angular/router";
 
 import { Subscription } from 'rxjs/Subscription';
+import { SearchService } from "app/core/search/search.service";
 
 @Component({
   selector: 'app-navigation',
@@ -13,7 +14,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
 
   private routerSubscription: Subscription;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private searchService: SearchService) { }
 
   ngOnInit() {
     this.routerSubscription = this.router.events
@@ -27,5 +28,10 @@ export class NavigationComponent implements OnInit, OnDestroy {
 
   toggleMenu() {
     this.isCollapsed = !this.isCollapsed;
+  }
+
+  submit(value: string) {
+    this.searchService.search(value)
+      .subscribe(products => console.log(products));
   }
 }
