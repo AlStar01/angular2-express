@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from "@angular/http";
+import { Http, Response, URLSearchParams } from "@angular/http";
 import { Observable } from "rxjs/Observable";
 import { Product } from "app/products/product";
 
@@ -9,8 +9,11 @@ export class SearchService {
 
   constructor(private http: Http) { }
 
-  search(query: string): Observable<Product[]> {
-    return this.http.post(this.searchUrl, { query })
+  search(term: string): Observable<Product[]> {
+    let params = new URLSearchParams();
+    params.set('search', term);
+
+    return this.http.get(this.searchUrl, { search: params })
       .map((res: Response) => res.json())
       .catch(this.handleError);
   }

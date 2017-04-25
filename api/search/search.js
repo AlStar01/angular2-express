@@ -3,8 +3,8 @@ let router = express.Router();
 
 let searchService = require('./search.service');
 
-router.post('/', (req, res) => {
-    return searchService.search(req.body.query)
+router.get('/', (req, res) => {
+    return searchService.search(req.query.search)
         .then(products => res.status(200).send(products))
         .catch(err => res.status(500).send(err));
 });

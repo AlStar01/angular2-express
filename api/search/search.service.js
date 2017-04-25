@@ -7,12 +7,12 @@ class SearchService {
         this.search = this.search.bind(this);
     }
 
-    search(query) {
+    search(term) {
         return this.db
             .select()
             .from('product')
-            .where('name', 'like', `%${query}%`)
-            .orWhere('description', 'like', `%${query}%`);
+            .where('name', 'like', `%${term}%`)
+            .orWhere('description', 'like', `%${term}%`);
     }
 }
 
