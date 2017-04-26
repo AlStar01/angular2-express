@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { ActivatedRoute, Params } from "@angular/router";
 
 import { ProductService } from "../product.service";
 import { Product } from "../product";
@@ -11,16 +12,28 @@ import { Product } from "../product";
 })
 export class ProductEditComponent implements OnInit {
   product: Product;
+  productId: number;
 
   constructor(
-    private productService: ProductService, 
+    private productService: ProductService,
+    private route: ActivatedRoute,
     private location: Location) { }
 
   ngOnInit() {
-
+    this.route.params
+      .map((params: Params) => params['id'])
+      .do(id => this.productId = +id)
+      .subscribe(id => this.getProduct());
   }
 
   goBack() {
     this.location.back();
+  }
+
+  //////////////////////////////////////
+
+  private getProduct() {
+    this.productService.getProduct(this.productId)
+      .subscribe(product => this.product = product);
   }
 }
