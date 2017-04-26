@@ -9,6 +9,7 @@ class SearchService {
 
     search(term) {
         return this.db
+            .distinct('name')
             .select(['id', 'name'])
             .from('product')
             .where('name', 'like', `%${term}%`)

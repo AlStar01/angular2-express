@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+
+import { ProductService } from "../product.service";
+import { Product } from "../product";
 
 @Component({
   selector: 'app-product-edit',
@@ -6,10 +10,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-edit.component.css']
 })
 export class ProductEditComponent implements OnInit {
+  product: Product;
 
-  constructor() { }
+  constructor(
+    private productService: ProductService, 
+    private location: Location) { }
 
   ngOnInit() {
+
   }
 
+  goBack() {
+    this.location.back();
+  }
 }
