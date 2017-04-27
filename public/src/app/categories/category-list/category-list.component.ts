@@ -26,7 +26,21 @@ export class CategoryListComponent implements OnInit {
   openModal(content) {
     const modalRef = 
       this.modalService.open(CategoryAddComponent).result
-        .then(category => this.categories = [...this.categories, category])
+        .then(category => {
+          this.categories = 
+            [...this.categories, category]
+            .sort((a: Category, b: Category) => {
+              if(a.name.toUpperCase() < b.name.toUpperCase()) {
+                return -1;
+              }
+
+              if(a.name.toUpperCase() > b.name.toUpperCase()) {
+                return 1;
+              }
+
+              return 0;
+            });
+        })
         .catch(reason => console.log(reason));
   }
 

@@ -24,6 +24,7 @@ export class CategoryFormComponent implements OnInit {
   ngOnInit() {
     if(this.category) {
       this.categoryForm.setValue({
+        id: this.category.id || undefined,
         name: this.category.name || '',
         description: this.category.description || ''
       });
@@ -45,6 +46,7 @@ export class CategoryFormComponent implements OnInit {
 
   private createForm() {
     this.categoryForm = this.fb.group({
+      id: undefined,
       name: ['', Validators.required],
       description: ['', Validators.required]
     });
