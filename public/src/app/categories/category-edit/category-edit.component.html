@@ -1,3 +1,10 @@
-<p>
-  category-edit works!
-</p>
+<h1>Edit Category: {{category?.name}}</h1>
+
+<br>
+
+<div *ngIf="category">
+  <app-category-form 
+    [category]="category"
+    (onSubmitted)="onSubmit($event)" 
+    (onCancelled)="onCancel($event)"></app-category-form>
+</div>

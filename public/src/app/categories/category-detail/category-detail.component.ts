@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Category } from '../category';
-import { CategoryService } from "app/categories/category.service";
+import { CategoryService } from "../category.service";
 import { Router, ActivatedRoute, Params } from "@angular/router";
 
 @Component({
@@ -10,7 +10,7 @@ import { Router, ActivatedRoute, Params } from "@angular/router";
   styleUrls: ['./category-detail.component.css']
 })
 export class CategoryDetailComponent implements OnInit {
-  private category: Category;
+  category: Category;
   private categoryId: number;
 
   constructor(

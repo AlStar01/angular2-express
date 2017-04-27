@@ -21,4 +21,10 @@ router.post('/', (req, res) => {
         .catch(err => res.status(500).send('Failed to add new product'));
 });
 
+router.put('/:id', (req, res) => {
+    categoryService.updateCategory(req.body)
+        .then(category => res.status(200).send(category))
+        .catch(err => res.status(500).send('Failed to update category'));
+});
+
 module.exports = router;

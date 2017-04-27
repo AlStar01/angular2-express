@@ -5,6 +5,9 @@ class CategoryService {
         this.db = db;
 
         this.getCategories = this.getCategories.bind(this);
+        this.getCategory = this.getCategory.bind(this);
+        this.addCategory = this.addCategory.bind(this);
+        this.updateCategory = this.updateCategory.bind(this);
     }
 
     getCategories() {        
@@ -27,6 +30,15 @@ class CategoryService {
             .returning('id')
             .insert(category)
             .then((categoryId) => this.getCategory(categoryId[0]));
+    }
+
+    updateCategory(category) {
+        const updatedCategory = Object.assign({}, category, { id: undefined })
+        
+        return this.db('category')
+            .where('id', category.id)
+            .update(updatedCategory)
+            .then(() => this.getCategory(category.id));
     }
 }
 

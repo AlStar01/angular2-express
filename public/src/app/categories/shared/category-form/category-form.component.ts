@@ -1,4 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component, Input, Output,
+  EventEmitter, OnChanges
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Category } from "../../category";
@@ -9,7 +12,7 @@ import { CategoryService } from "../../category.service";
   templateUrl: './category-form.component.html',
   styleUrls: ['./category-form.component.css']
 })
-export class CategoryFormComponent implements OnInit {
+export class CategoryFormComponent implements OnChanges {
   @Input() category: Category;
 
   @Output() onCancelled: EventEmitter<any> = new EventEmitter();
@@ -17,18 +20,18 @@ export class CategoryFormComponent implements OnInit {
 
   categoryForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private categoryService: CategoryService) {
+  constructor(
+    private fb: FormBuilder,
+    private categoryService: CategoryService) {
     this.createForm();
   }
 
-  ngOnInit() {
-    if(this.category) {
-      this.categoryForm.setValue({
-        id: this.category.id || undefined,
-        name: this.category.name || '',
-        description: this.category.description || ''
-      });
-    }
+  ngOnChanges() {
+    this.categoryForm.reset({
+      id: this.category.id,
+      name: this.category.name,
+      description: this.category.description
+    });
   }
 
   canSubmit() {

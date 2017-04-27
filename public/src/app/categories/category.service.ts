@@ -29,6 +29,12 @@ export class CategoryService {
       .catch(this.handleError)
   }
 
+  updateCategory(category: Category) {
+    return this.http.put(`${this.categoriesUrl}/${category.id}`, category)
+      .map((res: Response) => res.json())
+      .catch(this.handleError);
+  }
+
   ///////////////////////////////////////////////
 
   private handleError (error: Response | any) {
