@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Category } from "app/categories/category";
+import { Category } from "../../category";
+import { CategoryService } from "../../category.service";
 
 @Component({
   selector: 'app-category-form',
@@ -11,12 +12,12 @@ import { Category } from "app/categories/category";
 export class CategoryFormComponent implements OnInit {
   @Input() category: Category;
 
-  @Output() cancel: EventEmitter<any> = new EventEmitter();
-  @Output() submit: EventEmitter<Category> = new EventEmitter();
+  @Output() onCancelled: EventEmitter<any> = new EventEmitter();
+  @Output() onSubmitted: EventEmitter<Category> = new EventEmitter();
 
   categoryForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private categoryService: CategoryService) {
     this.createForm();
   }
 
@@ -34,12 +35,12 @@ export class CategoryFormComponent implements OnInit {
   }
 
   onCancel() {
-    this.cancel.emit("Cancelled adding new category");
+    this.onCancelled.emit("Cancelled adding new category");
   }
 
   onSubmit() {
-    const formValue = this.categoryForm.value;
-    this.submit.emit(formValue);
+    const categoryFormValue: Category = <Category>this.categoryForm.value;
+    this.onSubmitted.emit(categoryFormValue);
   }
 
   private createForm() {

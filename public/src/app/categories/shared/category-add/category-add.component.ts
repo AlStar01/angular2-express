@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { Category } from "app/categories/category";
-import { CategoryService } from "app/categories/category.service";
+import { Category } from "../../category";
+import { CategoryService } from "../../category.service";
 
 @Component({
   selector: 'app-category-add',
@@ -13,11 +13,10 @@ import { CategoryService } from "app/categories/category.service";
 export class CategoryAddComponent {
   constructor(
     private categoryService: CategoryService,
-    private activeModal: NgbActiveModal) { }
+    public activeModal: NgbActiveModal) { }
 
   onSubmit(category: Category) {
-    this.categoryService.addCategory(category)
-      .subscribe(category => this.activeModal.close(category))
+    this.categoryService.addCategory(category).subscribe(category => this.activeModal.close(category));
   }
 
   onCancel(reason: string) {

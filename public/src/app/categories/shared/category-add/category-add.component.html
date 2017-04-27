@@ -7,7 +7,5 @@
 <div class="modal-body">
   <p>Please fill out the information below to add a new category.</p>
 
-  <br>
-
-  <app-category-form (submit)="onSubmit($event)" (cancel)="onCancel($event)"></app-category-form>
+  <app-category-form (onSubmitted)="onSubmit($event)" (onCancelled)="onCancel($event)"></app-category-form>
 </div>

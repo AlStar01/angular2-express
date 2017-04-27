@@ -24,8 +24,9 @@ class CategoryService {
 
     addCategory(category) {
         return this.db('category')
-            .returning('*')
-            .insert(category);
+            .returning('id')
+            .insert(category)
+            .then((categoryId) => this.getCategory(categoryId[0]));
     }
 }
 
