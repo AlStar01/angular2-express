@@ -10,6 +10,7 @@ import { CategoryFormComponent } from './shared/category-form/category-form.comp
 import { CategoryAddComponent } from './shared/category-add/category-add.component';
 
 import { CategoryService } from "app/categories/category.service";
+import { CategoryEditComponent } from './category-edit/category-edit.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,7 @@ import { CategoryService } from "app/categories/category.service";
     CategoryListComponent, 
     CategoryDetailComponent,
     CategoryAddComponent, 
-    CategoryFormComponent
+    CategoryFormComponent, CategoryEditComponent
   ],
   providers: [CategoryService],
   entryComponents: [CategoryAddComponent]
