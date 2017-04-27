@@ -6,12 +6,23 @@
     </div>
   </div>
 
-  <br>
+  <br />
 
   <div class="row">
     <div class="col">
       <button class="btn btn-primary" type="button" (click)="goToCategories()">Back</button>
       <button class="btn btn-warning" type="button" routerLink="edit">Edit</button>
     </div>
+  </div>
+</div>
+
+<br />
+<br />
+
+<div *ngIf="products">
+  <h2>Featured Products in {{category?.name}}</h2>
+  <br />
+  <div class="row">
+    <app-product-card class="col-sm-6 col-md-3" *ngFor="let product of products" [product]="product"></app-product-card>
   </div>
 </div>

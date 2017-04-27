@@ -38,7 +38,7 @@ export class CategoryEditComponent implements OnInit {
 
   private getCategory() {
     this.categoryService.getCategory(this.categoryId)
-      .subscribe(category => this.category = category);
+      .subscribe(data => this.category = data.category);
   }
 
   private goToDetail() {

@@ -4,6 +4,7 @@ import { Http, Response } from '@angular/http';
 import { Observable } from "rxjs/Observable";
 
 import { Category } from './category';
+import { Product } from "../products/product";
 
 @Injectable()
 export class CategoryService {
@@ -17,7 +18,7 @@ export class CategoryService {
       .catch(this.handleError);
   }
   
-  getCategory(id: number): Observable<Category> {
+  getCategory(id: number): Observable<{ category: Category, products: Product[] }> {
     return this.http.get(`${this.categoriesUrl}/${id}`)
       .map((res: Response) => res.json())
       .catch(this.handleError);

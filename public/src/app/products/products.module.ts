@@ -25,8 +25,11 @@ import { ProductEditComponent } from './product-edit/product-edit.component';
     ProductListComponent, 
     ProductDetailComponent, 
     ProductCardComponent, 
-    ProductFormComponent, ProductAddComponent, ProductEditComponent
+    ProductFormComponent, 
+    ProductAddComponent, 
+    ProductEditComponent
   ],
+  exports: [ProductCardComponent],
   providers: [ProductService]
 })
 export class ProductsModule { }

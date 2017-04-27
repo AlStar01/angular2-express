@@ -17,12 +17,11 @@ class CategoryService {
             .orderBy('name');
     }
 
-    getCategory(id) {
-        return this.db
-            .select()
-            .from('category')
-            .where('id', id)
-            .first()
+    getCategory(categoryId) {
+        return Promise.all([
+            this.db.select().from('category').where('id', categoryId).first(),
+            this.db.select().from('product').where('category_id', categoryId).limit(25)
+        ]);
     }
 
     addCategory(category) {

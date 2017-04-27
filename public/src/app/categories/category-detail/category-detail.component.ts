@@ -1,17 +1,22 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from "@angular/router";
 
 import { Category } from '../category';
 import { CategoryService } from "../category.service";
-import { Router, ActivatedRoute, Params } from "@angular/router";
+
+import { Product } from "../../products/product";
 
 @Component({
   selector: 'app-category-detail',
   templateUrl: './category-detail.component.html',
-  styleUrls: ['./category-detail.component.css']
+  styleUrls: ['./category-detail.component.css'],
+  
 })
 export class CategoryDetailComponent implements OnInit {
-  category: Category;
   private categoryId: number;
+  
+  category: Category;
+  products: Product[];
 
   constructor(
     private router: Router,
@@ -33,6 +38,9 @@ export class CategoryDetailComponent implements OnInit {
 
   private getCategory() {
     this.categoryService.getCategory(this.categoryId)
-      .subscribe(category => this.category = category);
+      .subscribe(data => {
+        this.category = data.category;
+        this.products = data.products;
+      });
   }
 }

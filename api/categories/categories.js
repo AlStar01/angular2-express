@@ -11,7 +11,10 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
     categoryService.getCategory(req.params.id)
-        .then(category => res.status(200).send(category))
+        .then(values => {
+            const [category, products] = values;
+            return res.status(200).send({ category, products })
+        })
         .catch(err => res.status(500).send('Error retrieving category by id'))
 });
 

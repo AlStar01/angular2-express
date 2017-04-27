@@ -12,17 +12,21 @@ import { CategoryAddComponent } from './shared/category-add/category-add.compone
 import { CategoryService } from "app/categories/category.service";
 import { CategoryEditComponent } from './category-edit/category-edit.component';
 
+import { ProductsModule } from "../products/products.module";
+
 @NgModule({
   imports: [
     SharedModule,
-    CategoryRoutingModule
+    CategoryRoutingModule,
+    ProductsModule
   ],
   declarations: [
     CategoriesComponent,
     CategoryListComponent, 
     CategoryDetailComponent,
     CategoryAddComponent, 
-    CategoryFormComponent, CategoryEditComponent
+    CategoryFormComponent, 
+    CategoryEditComponent
   ],
   providers: [CategoryService],
   entryComponents: [CategoryAddComponent]
