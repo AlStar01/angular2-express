@@ -1,9 +1,10 @@
 .card {
     margin-bottom: 25px;
+    border-radius: 0;
 }
 
 .card img {
-    height: 180px;
+    border-radius: 0;
 }
 
 .card img:hover {

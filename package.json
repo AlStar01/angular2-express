@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "concurrently \"node ./bin/www\" \"cd public && npm start\""
+    "start": "concurrently \"node ./bin/www\" \"cd public && npm start\"",
+    "dev": "nodemon ./bin/www"
   },
   "dependencies": {
     "body-parser": "~1.17.1",
@@ -19,6 +20,7 @@
   },
   "devDependencies": {
     "concurrently": "^3.4.0",
-    "faker": "^4.1.0"
+    "faker": "^4.1.0",
+    "nodemon": "^1.11.0"
   }
 }

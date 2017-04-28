@@ -1,3 +1,21 @@
-<p>
-  dashboard-summary works!
-</p>
+<h2>Summary</h2>
+
+<br />
+
+<div class="row">
+  <div class="col">
+    <div *ngIf="productsByColorChartData">
+      <canvas baseChart
+            [datasets]="productsByColorChartData"
+            [labels]="productsByColorChartLabels"
+            [options]="productsByColorChartOptions"
+            [legend]="productsByColorChartLegend"
+            [chartType]="productsByColorChartType"
+            (chartHover)="productsByColorChartHovered($event)"
+            (chartClick)="productsByColorChartClicked($event)"></canvas>
+    </div>
+  </div>
+  <div class="col">
+    bar
+  </div>
+</div>

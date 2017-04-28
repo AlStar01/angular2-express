@@ -4,31 +4,37 @@ class DashboardService {
     constructor() {
         this.db = db;
 
+        this.getDashboardData = this.getDashboardData.bind(this);
         this.getProductsByCategory = this.getProductsByCategory.bind(this);
         this.getProductsByColor = this.getProductsByColor.bind(this);
     }
 
+    getDashboardData() {
+        return Promise.all([
+            this.getProductsByColor(),
+            this.getProductsByCategory()
+        ]);
+    }
+
     getProductsByCategory() {
         return db
-            .select(['category.id as categoryId', 'category.name'])
-            .count('product.id as total')
+            .select(['category.id as category_id', 'category.name as category_name'])
+            .count('product.id as quantity')
             .from('product')
             .innerJoin('category', 'product.category_id', 'category.id')
-            .groupBy('product.category_id')
-            .orderBy('total', 'desc')
-            .orderBy('category.name')
-            .limit(limit);
+            .groupBy('category_name')
+            .orderBy('quantity', 'desc')
+            .limit(5);
     }
 
     getProductsByColor() {
-        return db.
-            select('product.color')
-            .count('product.id as total')
+        return this.db
+            .select('color')
+            .count('product.id as quantity')
             .from('product')
-            .groupBy('product.color')
-            .orderBy('total', 'desc')
-            .orderBy('color')
-            .limit(limit);
+            .groupBy('color')
+            .orderBy('quantity', 'desc')
+            .limit(5);
     }
 }
 
