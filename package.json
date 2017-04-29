@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "concurrently \"node ./bin/www\" \"cd public && npm start\"",
+    "start": "concurrently \"nodemon ./bin/www\" \"cd public && npm start\"",
     "dev": "nodemon ./bin/www"
   },
   "dependencies": {
@@ -16,6 +16,7 @@
     "knex": "^0.12.7",
     "morgan": "~1.8.1",
     "serve-favicon": "~2.4.1",
+    "socket.io": "^1.7.3",
     "sqlite3": "^3.1.8"
   },
   "devDependencies": {

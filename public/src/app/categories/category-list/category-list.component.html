@@ -18,7 +18,7 @@
   <md-list-item *ngFor="let category of categories" (click)="goToCategoryDetail(category.id)">
     <h3 md-line> {{category.name}} </h3>
     <p md-line>
-      <span> {{category.description | truncate}} </span>
+      <span> {{category.description}} </span>
     </p>
   </md-list-item>
 </md-list>

@@ -21,7 +21,7 @@
     <img md-list-avatar [src]="product.featured_image" [alt]="product.name">
     <h3 md-line>{{product.name}}</h3>
     <p md-line>
-      <span> {{product.price | currency:'USD':true:'1.2-2'}} </span>
+      <span style="color:red;"> {{product.price | currency:'USD':true:'1.2-2'}} </span>
       <span class="demo-2"> -- {{product.description}} </span>
     </p>
   </md-list-item>
