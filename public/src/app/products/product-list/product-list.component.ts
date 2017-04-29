@@ -12,7 +12,7 @@ import { Pagination } from "app/products/pagination";
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-  products: Product[] = [];
+  products: Product[];
 
   pagination: Pagination;
   total: number = 0;
@@ -68,8 +68,15 @@ export class ProductListComponent implements OnInit {
     return true;
   }
 
+  goToProductDetail(productId: number) {
+    this.router.navigate(['products', productId]);
+  }
+
+  //////////////////////////////////////
+
   private getProducts() {
     this.productService.getProducts(this.pagination)
+      .delay(1000)
       .subscribe(products => {
         this.products = products;
         this.setRouteParams();

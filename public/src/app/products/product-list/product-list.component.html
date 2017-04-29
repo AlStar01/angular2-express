@@ -6,26 +6,37 @@
 
 <br>
 
-<div class="row align-items-center justify-content-end">
+<div class="row align-items-center justify-content-end" *ngIf="products">
   <div class="col"></div>
   <div class="col-sm-auto">
-    <button type="button" class="btn btn-secondary" (click)="goToPreviousPage()" [disabled]="isPreviousDisabled()">Previous</button>
-    <button type="button" class="btn btn-secondary" (click)="goToNextPage()" [disabled]="isNextDisabled()">Next</button>
+    <button md-raised-button (click)="goToPreviousPage()" [disabled]="isPreviousDisabled()">Previous</button>
+    <button md-raised-button (click)="goToNextPage()" [disabled]="isNextDisabled()">Next</button>
   </div>
 </div>
 
 <br>
 
-<div class="row">
-  <app-product-card class="col-sm-6 col-md-3" *ngFor="let product of products" [product]="product"></app-product-card>
-</div>
+<md-list *ngIf="products; else loading">
+  <md-list-item *ngFor="let product of products" (click)="goToProductDetail(product.id)">
+    <img md-list-avatar [src]="product.featured_image" [alt]="product.name">
+    <h3 md-line>{{product.name}}</h3>
+    <p md-line>
+      <span> {{product.price | currency:'USD':true:'1.2-2'}} </span>
+      <span class="demo-2"> -- {{product.description}} </span>
+    </p>
+  </md-list-item>
+</md-list>
+
+<ng-template #loading>
+  <md-progress-bar mode="indeterminate"></md-progress-bar>
+</ng-template>
 
 <br>
 
-<div class="row align-items-center justify-content-end">
+<div class="row align-items-center justify-content-end" *ngIf="products">
   <div class="col"></div>
   <div class="col-sm-auto">
-    <button type="button" class="btn btn-secondary" (click)="goToPreviousPage()" [disabled]="isPreviousDisabled()">Previous</button>
-    <button type="button" class="btn btn-secondary" (click)="goToNextPage()" [disabled]="isNextDisabled()">Next</button>
+    <button md-raised-button (click)="goToPreviousPage()" [disabled]="isPreviousDisabled()">Previous</button>
+    <button md-raised-button (click)="goToNextPage()" [disabled]="isNextDisabled()">Next</button>
   </div>
 </div>

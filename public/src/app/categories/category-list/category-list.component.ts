@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Router } from "@angular/router";
+
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 import { CategoryService } from "../category.service";
@@ -16,6 +18,7 @@ export class CategoryListComponent implements OnInit {
   closeResult: string;
 
   constructor(
+    private router: Router,
     private modalService: NgbModal, 
     private categoryService: CategoryService) { }
 
@@ -43,6 +46,12 @@ export class CategoryListComponent implements OnInit {
         })
         .catch(reason => console.log(reason));
   }
+
+  goToCategoryDetail(categoryId: number) {
+    this.router.navigate(['categories', categoryId]);
+  }
+
+  /////////////////////////////////////////
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {

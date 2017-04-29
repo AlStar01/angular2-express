@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { MdListModule, MdButtonModule } from '@angular/material';
+import { MdListModule, MdButtonModule, MdProgressSpinnerModule, MdProgressBarModule } from '@angular/material';
 
 import { SelectOnFocusDirective } from './directives/select-on-focus.directive';
 import { TruncatePipe } from './pipes/truncate.pipe';
@@ -21,6 +21,8 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     HttpModule,
     MdListModule,
     MdButtonModule,
+    MdProgressSpinnerModule,
+    MdProgressBarModule,
     NgbModule,
     SelectOnFocusDirective,
     TruncatePipe

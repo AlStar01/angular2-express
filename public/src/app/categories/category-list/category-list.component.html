@@ -15,7 +15,7 @@
 <br>
 
 <md-list *ngIf="categories">
-  <md-list-item *ngFor="let category of categories">
+  <md-list-item *ngFor="let category of categories" (click)="goToCategoryDetail(category.id)">
     <h3 md-line> {{category.name}} </h3>
     <p md-line>
       <span> {{category.description | truncate}} </span>
