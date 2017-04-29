@@ -94,7 +94,12 @@ function onListening() {
 /**
  * Websocket
  */
-let io = require('socket.io')(server);
-io.on('connection', function(socket){
-  console.log('a user connected');
-});
+let io = require('socket.io')(server, { path: '/ws' });
+io
+  .on('connection', function(socket){
+    console.log('a user connected');
+
+    socket.on('foo', function(msg){
+      io.emit('foo', msg);
+    });
+  });
