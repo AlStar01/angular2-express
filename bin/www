@@ -8,7 +8,6 @@ let app = require('../app');
 let debug = require('debug')('inventory-app-angular2-express:server');
 let http = require('http');
 
-
 /**
  * Get port from environment and store in Express.
  */
@@ -29,6 +28,11 @@ let server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+
+/**
+ * Websocket
+ */
+require('../api/socket').attach(server, { path: '/ws' });
 
 /**
  * Normalize a port into a number, string, or false.
@@ -89,17 +93,3 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
-
-
-/**
- * Websocket
- */
-let io = require('socket.io')(server, { path: '/ws' });
-io
-  .on('connection', function(socket){
-    console.log('a user connected');
-
-    socket.on('foo', function(msg){
-      io.emit('foo', msg);
-    });
-  });
