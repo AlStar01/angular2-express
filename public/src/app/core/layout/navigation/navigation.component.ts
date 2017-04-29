@@ -40,6 +40,10 @@ export class NavigationComponent implements OnInit, OnDestroy {
       .subscribe(products => console.log(products));
   }
 
+  goToHome() {
+    this.router.navigate(['/']);
+  }
+
   search = (text$: Observable<string>) => {
     return text$
       .debounceTime(300)

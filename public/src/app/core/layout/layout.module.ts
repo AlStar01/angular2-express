@@ -3,13 +3,18 @@ import { RouterModule } from "@angular/router";
 
 import { SharedModule } from '../../shared/shared.module';
 
+import { MdToolbarModule, MdIconModule, MdButtonModule, MdMenuModule } from '@angular/material';
+
 import { NavigationComponent } from "./navigation/navigation.component";
-import { NgbTypeahead } from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
     imports: [
         SharedModule, 
-        RouterModule
+        RouterModule,
+        MdToolbarModule,
+        MdIconModule,
+        MdButtonModule,
+        MdMenuModule
     ],
     declarations: [NavigationComponent],
     exports: [NavigationComponent]

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+<!--<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
   <button class="navbar-toggler navbar-toggler-right" type="button" aria-controls="appNavigation" [attr.aria-expanded]="!isCollapsed"
     aria-label="Toggle navigation" (click)="toggleMenu()">
     <span class="navbar-toggler-icon"></span>
@@ -28,4 +28,20 @@
 
 <ng-template #rt let-r="result" let-t="term">
   {{ r.name | truncate:20 }}
-</ng-template>
+</ng-template>-->
+
+<md-toolbar color="primary">
+  <span>App</span>
+  <span class="auto-spacer"></span>
+  <a routerLink="/">Home</a>
+  <a routerLink="/dashboard">Dashboard</a>
+  <a routerLink="/products">Products</a>
+  <a routerLink="/categories">Categories</a>
+  <button md-icon-button [mdMenuTriggerFor]="notifications">
+    <md-icon>notifications_none</md-icon>
+  </button>
+  <md-menu #notifications="mdMenu">
+    <button md-menu-item>Item 1</button>
+    <button md-menu-item>Item 2</button>
+  </md-menu>
+</md-toolbar>

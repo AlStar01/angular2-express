@@ -3,6 +3,10 @@ import { NgModule } from '@angular/core';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import 'hammerjs';
+
 import './rxjs-extensions';
 
 import { CoreModule } from './core/core.module';
@@ -28,6 +32,7 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     CoreModule.forRoot(),
     SharedModule,
     NgbModule.forRoot(),

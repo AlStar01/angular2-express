@@ -5,6 +5,8 @@ import { HttpModule } from '@angular/http';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { MdListModule, MdButtonModule } from '@angular/material';
+
 import { SelectOnFocusDirective } from './directives/select-on-focus.directive';
 import { TruncatePipe } from './pipes/truncate.pipe';
 
@@ -17,6 +19,8 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    MdListModule,
+    MdButtonModule,
     NgbModule,
     SelectOnFocusDirective,
     TruncatePipe
