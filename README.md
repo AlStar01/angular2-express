@@ -9,6 +9,7 @@ Technologies:
 * Knex
 * SQLite
 * Chart.js
+* Websockets (socket.io)
 
 To run the application:
 
