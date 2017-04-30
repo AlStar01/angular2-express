@@ -9,13 +9,13 @@ export class FilterTextComponent {
   filter: string = '';
   
   @Output() changed: EventEmitter<string> = new EventEmitter<string>();
-  
+
   clear() {
     this.filter = '';
   }
 
-  filterChanged($event: any) {
-    event.preventDefault();
+  filterChanged($event: KeyboardEvent) {
+    $event.preventDefault();
     this.changed.emit(this.filter);
   }
 }
