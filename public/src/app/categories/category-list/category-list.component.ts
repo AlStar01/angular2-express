@@ -29,7 +29,7 @@ export class CategoryListComponent implements OnInit {
     this.getCategories();
   }
 
-  openModal(content) {
+  openModal() {
     const modalRef = 
       this.modalService.open(CategoryAddComponent).result
         .then(category => {
