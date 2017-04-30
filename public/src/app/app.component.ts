@@ -1,21 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-
-import * as io from 'socket.io-client';
+import { Component } from '@angular/core';
+import { NotificationService } from "./core/notification/notification.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [NotificationService]
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'Welcome!';
 
-  private socket: any;
+  constructor(private notificationService: NotificationService) {}
 
   ngOnInit() {
-    this.socket = io({ path: '/ws' });
-
-    this.socket.on('foo', (msg) => console.log(msg));
-    this.socket.emit('foo', 'bazbazbaz');
+    this.notificationService.getNotification().subscribe(notification => console.log(notification));
   }
 }

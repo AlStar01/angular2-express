@@ -1,6 +1,10 @@
 let express = require('express');
 let router = express.Router();
 
+let io = require('../socket');
+
+let uuidV4 = require('uuid/v4');
+
 let categoryService = require('./category.service');
 
 router.get('/', (req, res) => {
@@ -20,7 +24,14 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
     categoryService.addCategory(req.body)
-        .then(category => res.status(200).send(category))
+        .then(category => {
+            console.log(category.id);
+            const notification = { id: uuidV4(), text: 'New category added', url: ['/categories', category.id] };
+
+            io.emit('CATEGORY_ADDED', notification);
+
+            return res.status(200).send(category);
+        })
         .catch(err => res.status(500).send('Failed to add new product'));
 });
 

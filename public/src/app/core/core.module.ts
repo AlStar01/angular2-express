@@ -7,7 +7,8 @@ import {
 import { CommonModule } from '@angular/common';
 
 import { LayoutModule } from "./layout/layout.module";
-import { SearchService } from "app/core/search/search.service";
+import { SearchService } from "./search/search.service";
+import { NotificationService } from "./notification/notification.service";
 
 
 @NgModule({
@@ -16,7 +17,10 @@ import { SearchService } from "app/core/search/search.service";
       HttpModule
     ],
     exports: [LayoutModule],
-    providers: [SearchService]
+    providers: [
+      SearchService, 
+      NotificationService
+    ]
 })
 export class CoreModule {
     constructor (@Optional() @SkipSelf() parentModule: CoreModule) {

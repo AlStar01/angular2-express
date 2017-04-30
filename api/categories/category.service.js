@@ -28,7 +28,7 @@ class CategoryService {
         return this.db('category')
             .returning('id')
             .insert(category)
-            .then((categoryId) => this.getCategory(categoryId[0]));
+            .then((categoryId) => this.db.select().from('category').where('id', categoryId).first());
     }
 
     updateCategory(category) {

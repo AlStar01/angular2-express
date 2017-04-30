@@ -16,7 +16,7 @@
 
 <div>
 
-</div *ngIf="categories">
+<div *ngIf="categories">
   <md-list>
     <md-list-item *ngFor="let category of categories" (click)="goToCategoryDetail(category.id)">
       <h3 md-line> {{category.name}} </h3>
