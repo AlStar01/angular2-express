@@ -9,6 +9,8 @@ import { MdListModule, MdButtonModule, MdProgressSpinnerModule, MdProgressBarMod
 
 import { SelectOnFocusDirective } from './directives/select-on-focus.directive';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { FilterTextComponent } from "./filter-text/filter-text.component";
+import { FilterTextService } from "./filter-text/filter-text.service";
 
 @NgModule({
   imports: [
@@ -25,11 +27,13 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     MdProgressBarModule,
     NgbModule,
     SelectOnFocusDirective,
-    TruncatePipe
+    TruncatePipe,
+    FilterTextComponent
   ],
   declarations: [
     SelectOnFocusDirective, 
     TruncatePipe
-  ]
+  ],
+  providers: [FilterTextService]
 })
 export class SharedModule { }
