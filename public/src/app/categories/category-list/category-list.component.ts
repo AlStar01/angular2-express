@@ -7,6 +7,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { CategoryService } from "../category.service";
 import { Category } from '../category';
 import { CategoryAddComponent } from "../shared/category-add/category-add.component";
+import { FilterTextService } from "../../shared/filter-text/filter-text.service";
 
 @Component({
   selector: 'app-category-list',
@@ -14,13 +15,15 @@ import { CategoryAddComponent } from "../shared/category-add/category-add.compon
   styleUrls: ['./category-list.component.css']
 })
 export class CategoryListComponent implements OnInit {
-  categories: Category[] = [];
+  categories: Category[];
+  filteredCategories: Category[];
   closeResult: string;
 
   constructor(
     private router: Router,
     private modalService: NgbModal, 
-    private categoryService: CategoryService) { }
+    private categoryService: CategoryService,
+    private filterTextService: FilterTextService) {}
 
   ngOnInit() {
     this.getCategories();
@@ -51,6 +54,10 @@ export class CategoryListComponent implements OnInit {
     this.router.navigate(['categories', categoryId]);
   }
 
+  filterChanged(term: string) {
+    this.filteredCategories = this.filterTextService.filter(term, ['name', 'description'], this.categories);
+  }
+
   /////////////////////////////////////////
 
   private getDismissReason(reason: any): string {
@@ -67,6 +74,8 @@ export class CategoryListComponent implements OnInit {
 
   private getCategories() {
     this.categoryService.getCategories()
-      .subscribe(categories => this.categories = categories);
+      .subscribe(categories => {
+        this.categories = this.filteredCategories = categories;
+      });
   }
 }

@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-filter-text',
   templateUrl: './filter-text.component.html',
   styleUrls: ['./filter-text.component.css']
 })
-export class FilterTextComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+export class FilterTextComponent {
+  filter: string = '';
+  
+  @Output() changed: EventEmitter<string> = new EventEmitter<string>();
+  
+  clear() {
+    this.filter = '';
   }
 
+  filterChanged($event: any) {
+    event.preventDefault();
+    this.changed.emit(this.filter);
+  }
 }
