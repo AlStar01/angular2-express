@@ -25,7 +25,6 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     categoryService.addCategory(req.body)
         .then(category => {
-            console.log(category.id);
             const notification = { id: uuidV4(), text: 'New category added', url: ['/categories', category.id] };
 
             io.emit('CATEGORY_ADDED', notification);

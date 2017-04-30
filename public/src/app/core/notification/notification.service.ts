@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Router } from "@angular/router";
+
+import { MdSnackBar, MdSnackBarRef, SimpleSnackBar } from "@angular/material";
 
 import * as io from 'socket.io-client';
 import { Observable } from "rxjs/Observable";
@@ -12,7 +15,9 @@ export class NotificationService {
 
   notifications: Notification[] = [];
 
-  constructor() {
+  constructor(
+    public router: Router,
+    public snackBar: MdSnackBar) {
     this.socket = io({ path: '/ws' });
   }
 
@@ -20,6 +25,8 @@ export class NotificationService {
     return new Observable(observer => {
       this.socket.on(types.CATEGORY_ADDED, (notification: Notification) => {
         this.notifications = [...this.notifications, notification];
+        this.showNotification(notification);
+
         observer.next(notification);
       });
     });
@@ -27,5 +34,13 @@ export class NotificationService {
 
   clearNotifications() {
     this.notifications = Object.assign([]);;
+  }
+
+  private showNotification(notification: Notification) {
+    let snackBarRef: MdSnackBarRef<SimpleSnackBar> = this.snackBar.open(notification.text, 'View', {
+      duration: 3000
+    });
+
+    snackBarRef.onAction().subscribe(() => this.router.navigate(notification.url));
   }
 }
