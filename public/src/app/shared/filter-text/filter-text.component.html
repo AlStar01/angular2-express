@@ -1,1 +1,3 @@
-<input type="text" [(ngModel)]="filter" (keyup)="filterChanged($event)">
+<md-input-container>
+  <input mdInput placeholder="Search categories" [(ngModel)]="filter" (keyup)="filterChanged($event)">
+</md-input-container>
