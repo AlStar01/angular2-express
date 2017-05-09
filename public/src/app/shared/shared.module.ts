@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { 
@@ -24,6 +26,7 @@ import { FilterTextModule } from "./filter-text/filter-text.module";
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    FlexLayoutModule,
     MdListModule,
     MdButtonModule,
     MdProgressSpinnerModule,

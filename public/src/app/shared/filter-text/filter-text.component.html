@@ -1,3 +1,6 @@
-<md-input-container>
-  <input mdInput placeholder="Search categories" [(ngModel)]="filter" (keyup)="filterChanged($event)">
-</md-input-container>
+<div fxLayout="row" fxLayoutGap="25px" fxLayoutAlign="start baseline">
+  <md-input-container>
+    <input mdInput placeholder="Search categories" [(ngModel)]="filter" (keyup)="filterChanged($event)">
+  </md-input-container>
+  <button md-icon-button *ngIf="hasText()" (click)="clear($event)"><md-icon>clear</md-icon></button>
+</div>

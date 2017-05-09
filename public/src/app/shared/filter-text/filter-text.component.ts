@@ -10,8 +10,15 @@ export class FilterTextComponent {
   
   @Output() changed: EventEmitter<string> = new EventEmitter<string>();
 
-  clear() {
+  hasText() {
+    return this.filter.length > 0;
+  }
+
+  clear($event: MouseEvent) {
+    $event.preventDefault();
+    
     this.filter = '';
+    this.changed.emit(this.filter);
   }
 
   filterChanged($event: KeyboardEvent) {

@@ -16,8 +16,6 @@
 
 <app-filter-text (changed)="filterChanged($event)"></app-filter-text>
 
-<br>
-
 <div *ngIf="filteredCategories">
   <md-list>
     <md-list-item *ngFor="let category of filteredCategories" (click)="goToCategoryDetail(category.id)">
