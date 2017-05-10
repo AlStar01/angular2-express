@@ -1,11 +1,5 @@
-<div class="modal-header">
-  <h4 class="modal-title">Add new category</h4>
-  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-</div>
-<div class="modal-body">
-  <p>Please fill out the information below to add a new category.</p>
+<h1 class="mat-dialog-title">Add Category</h1>
 
+<div class="mat-dialog-content">
   <app-category-form (onSubmitted)="onSubmit($event)" (onCancelled)="onCancel($event)"></app-category-form>
 </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { MdDialogRef } from "@angular/material";
 
 import { Category } from "../../category";
 import { CategoryService } from "../../category.service";
@@ -13,13 +13,13 @@ import { CategoryService } from "../../category.service";
 export class CategoryAddComponent {
   constructor(
     private categoryService: CategoryService,
-    public activeModal: NgbActiveModal) { }
+    private dialogRef: MdDialogRef<CategoryAddComponent>) { }
 
   onSubmit(category: Category) {
-    this.categoryService.addCategory(category).subscribe(category => this.activeModal.close(category));
+    this.categoryService.addCategory(category).subscribe(category => this.dialogRef.close(category));
   }
 
-  onCancel(reason: string) {
-    this.activeModal.dismiss(reason);
+  onCancel() {
+    this.dialogRef.close();
   }
 }

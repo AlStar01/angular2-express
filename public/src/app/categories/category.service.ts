@@ -36,6 +36,20 @@ export class CategoryService {
       .catch(this.handleError);
   }
 
+  sortCategories(categories: Category[]): Category[] {
+    return categories.sort((a: Category, b: Category) => {
+        if (a.name.toUpperCase() < b.name.toUpperCase()) {
+          return -1;
+        }
+
+        if (a.name.toUpperCase() > b.name.toUpperCase()) {
+          return 1;
+        }
+
+        return 0;
+      });
+  }
+
   ///////////////////////////////////////////////
 
   private handleError (error: Response | any) {

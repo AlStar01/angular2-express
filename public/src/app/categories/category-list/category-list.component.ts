@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Router } from "@angular/router";
 
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { MdDialog, MdDialogRef } from '@angular/material';
 
 import { CategoryService } from "../category.service";
 import { Category } from '../category';
@@ -21,33 +21,22 @@ export class CategoryListComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private modalService: NgbModal, 
+    private dialogService: MdDialog,
     private categoryService: CategoryService,
-    private filterTextService: FilterTextService) {}
+    private filterTextService: FilterTextService) { }
 
   ngOnInit() {
     this.getCategories();
   }
 
   openModal() {
-    const modalRef = 
-      this.modalService.open(CategoryAddComponent).result
-        .then(category => {
-          this.categories = 
-            [...this.categories, category]
-            .sort((a: Category, b: Category) => {
-              if(a.name.toUpperCase() < b.name.toUpperCase()) {
-                return -1;
-              }
+    const modalRef: MdDialogRef<CategoryAddComponent> = this.dialogService.open(CategoryAddComponent);
 
-              if(a.name.toUpperCase() > b.name.toUpperCase()) {
-                return 1;
-              }
-
-              return 0;
-            });
-        })
-        .catch(reason => console.log(reason));
+    modalRef.afterClosed().subscribe((category: Category) => {
+      if(category.id) {
+        this.categories = this.categoryService.sortCategories([...this.categories, category]);
+      }
+    });
   }
 
   goToCategoryDetail(categoryId: number) {
@@ -56,18 +45,6 @@ export class CategoryListComponent implements OnInit {
 
   filterChanged(term: string) {
     this.filteredCategories = this.filterTextService.filter(term, ['name', 'description'], this.categories);
-  }
-
-  /////////////////////////////////////////
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return  `with: ${reason}`;
-    }
   }
 
   ///////////////////////////////////////////

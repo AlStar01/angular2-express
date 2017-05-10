@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 
 import { SharedModule } from "app/shared/shared.module";
 
+import { MdDialogModule, MdInputModule } from "@angular/material";
+
 import { CategoryListComponent } from './category-list/category-list.component';
 import { CategoryDetailComponent } from './category-detail/category-detail.component';
 import { CategoryRoutingModule } from "app/categories/category-routing.module";
@@ -14,10 +16,13 @@ import { CategoryEditComponent } from './category-edit/category-edit.component';
 
 import { ProductsModule } from "../products/products.module";
 
+
 @NgModule({
   imports: [
     SharedModule,
     CategoryRoutingModule,
+    MdDialogModule,
+    MdInputModule,
     ProductsModule
   ],
   declarations: [
