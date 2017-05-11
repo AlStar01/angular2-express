@@ -1,20 +1,11 @@
 let faker = require('faker');
 
-let knex = require('knex')({
-    client: 'sqlite3',
-    connection: {
-        filename: "../products.sqlite"
-    },
-    useNullAsDefault: true
-});
+let db = require('../config');
 
-let products = [];
 let categories = [];
 
-knex.pluck('id').from('Category').orderBy('id').then(function (ids) {
-    categories = ids;
-
-    for (let i = 0; i < 100; i++) {
+db.pluck('id').from('Category').orderBy('id').then(function (categoryIds) {
+    for (let i = 0; i < 500; i++) {
         let product = {
             name: faker.commerce.productName(),
             description: faker.lorem.sentence(),
@@ -24,15 +15,11 @@ knex.pluck('id').from('Category').orderBy('id').then(function (ids) {
             origin: faker.address.country(),
             manufacturer: faker.company.companyName(),
             featured_image: faker.image.image(),
-            created_on: knex.fn.now(),
-            modified_on: knex.fn.now(),
-            category_id: faker.random.arrayElement(categories)
+            created_on: db.fn.now(),
+            modified_on: db.fn.now(),
+            category_id: faker.random.arrayElement(categoryIds)
         };
-
-        products.push(product);
+        
+        db.insert(product).into('Product').then((id) => console.log(id));
     }
-
-    knex.insert(products).into('Product').then(function (id) {
-        console.log(id);
-    });
 });

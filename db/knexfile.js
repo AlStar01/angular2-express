@@ -4,7 +4,11 @@ module.exports = {
   development: {
     client: 'sqlite3',
     connection: {
-      filename: './db/products.sqlite'
-    }
+      filename: '../db/products.sqlite'
+    },
+    seeds: {
+      directory: './seeds'
+    },
+    useNullAsDefault: true
   }
 };

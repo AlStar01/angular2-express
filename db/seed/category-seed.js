@@ -1,11 +1,6 @@
 let faker = require('faker');
 
-let knex = require('knex')({
-  client: 'sqlite3',
-  connection: {
-    filename: "../products.sqlite"
-  }
-});
+let db = require('../config');
 
 let categories = [];
 let departments = [];
@@ -20,13 +15,11 @@ departments.forEach((department) => {
   let category = {
     name: department,
     description: faker.lorem.sentence(),
-    created_on: knex.fn.now(),
-    modified_on: knex.fn.now()
+    created_on: db.fn.now(),
+    modified_on: db.fn.now()
   };
 
   categories.push(category);
 });
 
-knex.insert(categories).into('Category').then(function (id) {
-  console.log(id);
-});
+db.insert(categories).into('Category').then((ids) => console.log(ids));
